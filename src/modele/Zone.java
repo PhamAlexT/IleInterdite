@@ -1,7 +1,7 @@
 package modele;
 
 enum Situation {
-	Normale, Inondée, Submergée
+	Normale, Inondee, Submergee
 }
 
 enum Element {
