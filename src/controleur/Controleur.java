@@ -6,13 +6,6 @@ import java.awt.event.ActionListener;
 import modele.Ile;
 
 public class Controleur implements ActionListener {
-	/**
-	 * On garde un pointeur vers le modèle, car le contrôleur doit provoquer un
-	 * appel de méthode du modèle. Remarque : comme cette classe est interne, cette
-	 * inscription explicite du modèle est inutile. On pourrait se contenter de
-	 * faire directement référence au modèle enregistré pour la classe englobante
-	 * [VueCommandes].
-	 */
 	Ile modele;
 
 	public Controleur(Ile modele) {

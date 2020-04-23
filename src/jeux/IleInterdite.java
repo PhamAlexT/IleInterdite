@@ -1,6 +1,7 @@
 package jeux;
 
 import java.awt.EventQueue;
+import java.io.IOException;
 
 import modele.Ile;
 import vue.CVue;
@@ -14,7 +15,13 @@ public class IleInterdite {
 	EventQueue.invokeLater(() -> {
 		/** Voici le contenu qui nous intéresse. */
                 Ile modele = new Ile();
-                CVue vue = new CVue(modele);
+                System.out.println(modele.toString());
+                try {
+					CVue vue = new CVue(modele);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	    });
     }
 }

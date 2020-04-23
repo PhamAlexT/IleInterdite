@@ -1,12 +1,17 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import autres.Observable;
+import modele.Zone.Element;
 
 public class Ile extends Observable {
 	/** On fixe la taille de la grille. */
-	public static final int HAUTEUR = 40, LARGEUR = 60;
+	public static final int HAUTEUR = 20, LARGEUR = 20;
 	/** On stocke un tableau de zones. */
 	private Zone[][] zones;
+	private Random generateur;
 
 	/** Construction : on initialise un tableau de zones. */
 	public Ile() {
@@ -20,6 +25,7 @@ public class Ile extends Observable {
 				zones[i][j] = new Zone(this, i, j);
 			}
 		}
+		this.generateur = new Random();
 		init();
 	}
 
@@ -30,36 +36,39 @@ public class Ile extends Observable {
 	public void init() {
 		for (int i = 1; i <= LARGEUR; i++) {
 			for (int j = 1; j <= HAUTEUR; j++) {
-				if (Math.random() < .2) {
-					zones[i][j].etat = true;
-				}
+				zones[i][j].situation = Situation.Normale;
+				zones[i][j].setElement(Element.values()[generateur.nextInt(Element.values().length)]);
 			}
 		}
 	}
 
 	/**
-	 * Calcul de la génération suivante.
+	 * Calcul du tour suivant
 	 */
 	public void avance() {
-		/**
-		 * On procède en deux étapes. - D'abord, pour chaque zone on évalue ce que
-		 * sera son état à la prochaine génération. - Ensuite, on applique les
-		 * évolutions qui ont été calculées.
-		 */
-		for (int i = 1; i < LARGEUR + 1; i++) {
-			for (int j = 1; j < HAUTEUR + 1; j++) {
-				zones[i][j].evalue();
+		System.out.println("On avance petit à petit");
+		ArrayList<Zone> zoneNonSubmergee = new ArrayList<Zone>();
+
+		for (int i = 1; i <= LARGEUR; i++) {
+			for (int j = 1; j <= HAUTEUR; j++) {
+				Zone zTraite = zones[i][j];
+				if (!zTraite.estSubmergee())
+					zoneNonSubmergee.add(zTraite);
 			}
 		}
-		for (int i = 1; i < LARGEUR + 1; i++) {
-			for (int j = 1; j < HAUTEUR + 1; j++) {
-				zones[i][j].evolue();
-			}
+
+		ArrayList<Zone> zoneAModif = new ArrayList<Zone>();
+
+		while (zoneAModif.size() < 3) {
+			Zone z = zoneNonSubmergee.get(generateur.nextInt(zoneNonSubmergee.size()));
+			if (!zoneAModif.contains(z))
+				zoneAModif.add(z);
 		}
-		/**
-		 * Pour finir, le modèle ayant changé, on signale aux observateurs qu'ils
-		 * doivent se mettre à jour.
-		 */
+		
+		for(Zone z:zoneAModif) {
+			zones[z.getX()][z.getY()].progresse();
+		}
+		
 		notifyObservers();
 	}
 
@@ -92,10 +101,14 @@ public class Ile extends Observable {
 	}
 
 	/**
-	 * Une méthode pour renvoyer la zone aux coordonnées choisies (sera utilisée
-	 * par la vue).
+	 * Une méthode pour renvoyer la zone aux coordonnées choisies (sera utilisée par
+	 * la vue).
 	 */
 	public Zone getZone(int x, int y) {
 		return zones[x][y];
+	}
+
+	public String toString() {
+		return String.format("Hauteur: %d\nLargeur: %d%n", this.HAUTEUR, this.LARGEUR);
 	}
 }

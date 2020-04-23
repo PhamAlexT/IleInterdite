@@ -6,8 +6,4 @@ public interface Observer {
      * jour.
      */
     public void update();
-    /**
-     * La version officielle de Java possède des paramètres précisant le
-     * changement qui a eu lieu.
-     */
 }
