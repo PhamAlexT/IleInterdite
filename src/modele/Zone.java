@@ -7,7 +7,7 @@ enum Situation {
 public class Zone {
 
 	public enum Element {
-		Air, Eau, Terre, Feu
+		Air, Eau, Terre, Feu, Neutre
 	}
 
 	/** On conserve un pointeur vers la classe principale du modèle. */
@@ -35,8 +35,8 @@ public class Zone {
 		this.etat = false;
 		this.x = x;
 		this.y = y;
-		this.situation = null;
-		this.setElement(null);
+		this.situation = Situation.Normale;
+		this.element = null;
 	}
 
 	public int getX() {
@@ -55,20 +55,6 @@ public class Zone {
 	 * [evolue]). Objectif : éviter qu'une évolution immédiate d'une Zone pollue la
 	 * décision prise pour une Zone voisine.
 	 */
-	private boolean prochainEtat;
-
-	protected void evalue() {
-		switch (this.ile.compteVoisines(x, y)) {
-		case 2:
-			prochainEtat = etat;
-			break;
-		case 3:
-			prochainEtat = true;
-			break;
-		default:
-			prochainEtat = false;
-		}
-	}
 
 	/* On peut jouer avec les indices et Enum.values() OPTION A CONSIDERE */
 	public void progresse() {
@@ -77,15 +63,6 @@ public class Zone {
 		} else if (this.situation == Situation.Inondee) {
 			this.situation = Situation.Submergee;
 		}
-	}
-
-	protected void evolue() {
-		etat = prochainEtat;
-	}
-
-	/** Un test à l'usage des autres classes (sera utilisé par la vue). */
-	public boolean estVivante() {
-		return etat;
 	}
 
 	/**
@@ -133,12 +110,6 @@ public class Zone {
 	}
 
 	public String toString() {
-		// return "Zone de coordonnées x = "+Integer.toString(this.x)+" y =
-		// "+Integer.toString(this.y)+
-		// "\nSituation: "+this.situation.name()+
-		// "\nElement: "+this.element.name();
-
-		// Version plus propre
 		return String.format("Zone de coordonnées x = %d y = %d \nSituation: %s \nElement: %s", this.x, this.y,
 				this.situation.name(), this.getElement().name());
 	}

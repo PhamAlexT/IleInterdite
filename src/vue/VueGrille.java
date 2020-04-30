@@ -75,6 +75,9 @@ class VueGrille extends JPanel implements Observer {
 		case Feu:
 			c = Color.RED;
 			break;
+		default:
+			c = Color.GRAY;
+			break;
 		}
 		return c;
 	}
@@ -92,8 +95,8 @@ class VueGrille extends JPanel implements Observer {
 			g.setColor(c);
 		}
 
-		if (z.estSubmergee()) {
-			g.setColor(c.darker().darker());
+		if (z.estInondee()) {
+			g.setColor(c.MAGENTA);
 		}
 
 		if (z.estSubmergee()) {
