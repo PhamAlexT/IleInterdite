@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import autres.Observer;
 import controleur.DeplacementJoueur;
 import modele.Ile;
+import modele.Ile.AccesHorsIle;
 import modele.Joueur;
 import modele.Zone;
 
@@ -46,7 +47,12 @@ class VueGrille extends JPanel implements Observer {
 				 * ... Appeler une fonction d'affichage auxiliaire. On lui fournit les
 				 * informations de dessin [g] et les coordonnées du coin en haut à gauche.
 				 */
-				paint(g, modele.getZone(i, j), (i - 1) * TAILLE, (j - 1) * TAILLE);
+				try {
+					paint(g, modele.getZone(i, j), (i - 1) * TAILLE, (j - 1) * TAILLE);
+				} catch (AccesHorsIle e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			for (Joueur j : this.modele.getJoueurs())
@@ -104,9 +110,5 @@ class VueGrille extends JPanel implements Observer {
 	public void paintJoueur(Graphics g, Joueur j) throws IOException {
 		Image imgJoueur = ImageIO.read(new File("res/Player.png"));
 		g.drawImage(imgJoueur, (j.getZone().getX() - 1) * TAILLE, (j.getZone().getY() - 1) * TAILLE, this);
-	}
-	
-	public Zone retourneZone() {
-		return null;
 	}
 }

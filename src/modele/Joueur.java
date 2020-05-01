@@ -26,4 +26,7 @@ public class Joueur {
 	public Zone getZone() {
 		return this.z;
 	}
+	public void recupereArtefact(Object truc) {
+		items.add(truc);
+	}
 }

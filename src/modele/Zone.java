@@ -28,7 +28,7 @@ public class Zone {
 	 * [compteVoisines]. situation et element initialisé à null car fait plus tard
 	 * et plus facile à détecter si erreur
 	 */
-	private final int x, y;
+	protected final int x, y;
 
 	public Zone(Ile ile, int x, int y) {
 		this.ile = ile;

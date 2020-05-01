@@ -48,8 +48,9 @@ class VueCommandes extends JPanel {
 		boutonFinDuTour.addActionListener(e -> {
 			modele.avance();
 		});
-		JButton test = new JButton("Testage");
+		JButton test = new JButton("Récupérer un artefact");
 		this.add(test);
-		test.addActionListener(e-> { modele.deplacementJoueur(modele.getJoueurs().get(0), modele.getZone(2, 2)); });
+		//TODO CHANGE NULL
+		test.addActionListener(e-> { modele.recupererArtefact(null); });
 	}
 }

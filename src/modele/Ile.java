@@ -32,6 +32,11 @@ public class Ile extends Observable {
 		init();
 	}
 
+	public class AccesHorsIle extends Exception{
+		public AccesHorsIle() {
+			System.out.println("Tentative d'accès à une zone hors de l'île");
+		}
+	}
 	/**
 	 * Initialisation aléatoire des zones, exceptées celle des bords qui ont été
 	 * ajoutés.
@@ -99,7 +104,8 @@ public class Ile extends Observable {
 		notifyObservers();
 	}
 
-	public void deplacementJoueur(Joueur j, Zone nZ) {
+	public void deplacementJoueur(Joueur j, Zone nZ) throws AccesHorsIle {
+		if (nZ.x<1 || nZ.x> LARGEUR || (nZ.y<1 || nZ.y> HAUTEUR)) throw new AccesHorsIle();
 		if (!nZ.estSubmergee() && j.getZone().estAdjacente(nZ)) {
 			j.seDeplace(nZ);
 			notifyObservers();
@@ -110,15 +116,17 @@ public class Ile extends Observable {
 		
 	}
 	
-	public void recupererArtefact() {
-		
+	public void recupererArtefact(Joueur j) {
+		j.recupereArtefact(null);
 	}
 
 	/**
 	 * Une méthode pour renvoyer la zone aux coordonnées choisies (sera utilisée par
 	 * la vue).
+	 * @throws AccesHorsIle 
 	 */
-	public Zone getZone(int x, int y) {
+	public Zone getZone(int x, int y) throws AccesHorsIle {
+		if (x<1 || x> LARGEUR || (y<1 || y> HAUTEUR)) throw new AccesHorsIle();
 		return zones[x][y];
 	}
 
