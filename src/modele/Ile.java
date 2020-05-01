@@ -13,6 +13,8 @@ public class Ile extends Observable {
 	private Zone[][] zones;
 	private Random generateur;
 
+	private ArrayList<Joueur> joueurs;
+
 	/** Construction : on initialise un tableau de zones. */
 	public Ile() {
 		/**
@@ -26,6 +28,7 @@ public class Ile extends Observable {
 			}
 		}
 		this.generateur = new Random();
+		this.joueurs = new ArrayList<Joueur>();
 		init();
 	}
 
@@ -33,40 +36,44 @@ public class Ile extends Observable {
 	 * Initialisation aléatoire des zones, exceptées celle des bords qui ont été
 	 * ajoutés.
 	 */
-	/**
-	 * On va rajouter la zone d'air, d'eau, de terre et enfin feu.
-	 */
-
 	public void init() {
+		initCellules();
+		initJoueurs();
+	}
 
+	public void initCellules() {
 		ArrayList<int[]> casesSpe = new ArrayList<int[]>();
 		while (casesSpe.size() < 4) {
 			int[] c = { generateur.nextInt(LARGEUR) + 1, generateur.nextInt(HAUTEUR) + 1 };
 			if (!casesSpe.contains((int[]) c))
 				casesSpe.add(c);
 		}
-		
+
 		int iElem = 0;
-		
+
 		// A optimiser
 		for (int i = 1; i <= LARGEUR; i++) {
 			for (int j = 1; j <= HAUTEUR; j++) {
 				zones[i][j].setElement(Element.Neutre);
-				for (int[] c:casesSpe) {
-					if (c[0]==i && c[1]==j){
+				for (int[] c : casesSpe) {
+					if (c[0] == i && c[1] == j) {
 						zones[i][j].setElement(Element.values()[iElem]);
-						iElem = iElem+1;
+						iElem = iElem + 1;
 					}
 				}
 			}
 		}
 	}
 
+	public void initJoueurs() {
+		Joueur p = new Joueur(this, zones[1][1]);
+		joueurs.add(p);
+	}
+
 	/**
 	 * Calcul du tour suivant
 	 */
 	public void avance() {
-		System.out.println("On avance petit à petit");
 		ArrayList<Zone> zoneNonSubmergee = new ArrayList<Zone>();
 
 		for (int i = 1; i <= LARGEUR; i++) {
@@ -92,6 +99,21 @@ public class Ile extends Observable {
 		notifyObservers();
 	}
 
+	public void deplacementJoueur(Joueur j, Zone nZ) {
+		if (!nZ.estSubmergee() && j.getZone().estAdjacente(nZ)) {
+			j.seDeplace(nZ);
+			notifyObservers();
+		}
+	}
+	
+	public void assecher(Joueur j, Zone zV) {
+		
+	}
+	
+	public void recupererArtefact() {
+		
+	}
+
 	/**
 	 * Une méthode pour renvoyer la zone aux coordonnées choisies (sera utilisée par
 	 * la vue).
@@ -101,6 +123,11 @@ public class Ile extends Observable {
 	}
 
 	public String toString() {
-		return String.format("Hauteur: %d\nLargeur: %d%n", this.HAUTEUR, this.LARGEUR);
+		return String.format("Infos Iles: \nHauteur: %d\nLargeur: %d%nNombre de joueurs: %d", HAUTEUR, LARGEUR,
+				this.joueurs.size());
+	}
+
+	public ArrayList<Joueur> getJoueurs() {
+		return this.joueurs;
 	}
 }

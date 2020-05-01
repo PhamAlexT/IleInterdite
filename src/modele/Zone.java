@@ -110,8 +110,12 @@ public class Zone {
 	}
 
 	public String toString() {
-		return String.format("Zone de coordonnées x = %d y = %d \nSituation: %s \nElement: %s", this.x, this.y,
+		return String.format("Zone de coordonnées x = %d y = %d \nSituation: %s \nElement: %s\n", this.x, this.y,
 				this.situation.name(), this.getElement().name());
+	}
+	
+	public boolean estAdjacente(Zone z) {
+		return Math.abs(this.x - z.x) <= 1 && Math.abs(this.y - z.y) <=1;
 	}
 
 }
