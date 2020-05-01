@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public abstract class Observable {
     /**
-     * On a une liste [observers] d'observateurs, initialement vide, Ã  laquelle
-     * viennent s'inscrire les observateurs via la mÃ©thode [addObserver].
+     * On a une liste [observers] d'observateurs, initialement vide, à laquelle
+     * viennent s'inscrire les observateurs via la méthode [addObserver].
      */
     private ArrayList<Observer> observers;
     public Observable() {
@@ -16,10 +16,10 @@ public abstract class Observable {
     }
 
     /**
-     * Lorsque l'Ã©tat de l'objet observÃ© change, il est convenu d'appeler la
-     * mÃ©thode [notifyObservers] pour prÃ©venir l'ensemble des observateurs
-     * enregistrÃ©s.
-     * On le fait ici concrÃ¨tement en appelant la mÃ©thode [update] de chaque
+     * Lorsque l'état de l'objet observé change, il est convenu d'appeler la
+     * méthode [notifyObservers] pour prévenir l'ensemble des observateurs
+     * enregistrés.
+     * On le fait ici concrètement en appelant la méthode [update] de chaque
      * observateur.
      */
     public void notifyObservers() {
@@ -28,3 +28,4 @@ public abstract class Observable {
 	}
     }
 }
+

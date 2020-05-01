@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modele.Ile;
+import modele.Joueur;
 
 public class Controleur implements ActionListener {
 	Ile modele;
@@ -13,13 +14,21 @@ public class Controleur implements ActionListener {
 	}
 
 	/**
-	 * Action effectuÃ©e Ã  rÃ©ception d'un Ã©vÃ©nement : appeler la mÃ©thode [avance] du
-	 * modÃ¨le.
+	 * Action effectuée à réception d'un événement : appeler la méthode [avance] du
+	 * modèle.
 	 */
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		modele.avance();
+		this.modele.avance();
+		System.out.println("bipboup");
+		this.modele.getJoueurs();
+		System.out.println("Changement de tour !");
+		for(int i=0; i<this.modele.getJoueurs().size(); i++) {
+			this.modele.getJoueurs().get(i).resetEnergy();
+			System.out.println(this.modele.getJoueurs().get(i).getRemainingA());
+		}
 	}
 }
+

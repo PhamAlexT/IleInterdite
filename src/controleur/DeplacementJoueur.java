@@ -13,9 +13,9 @@ public class DeplacementJoueur implements MouseListener {
 	private Joueur j;
 	private final int TAILLE;
 
-	public DeplacementJoueur(Ile ile, int nbPixel) {
+	public DeplacementJoueur(Ile ile) {
 		this.ile = ile;
-		TAILLE = nbPixel;
+		TAILLE = ile.LARGEUR*ile.HAUTEUR;
 	}
 
 	@Override

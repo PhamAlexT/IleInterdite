@@ -10,23 +10,23 @@ public class Zone {
 		Air, Eau, Terre, Feu, Neutre
 	}
 
-	/** On conserve un pointeur vers la classe principale du modÃ¨le. */
+	/** On conserve un pointeur vers la classe principale du modèle. */
 	private Ile ile;
 
-	/** L'Ã©tat d'une Zone est donnÃ© par un boolÃ©en. */
+	/** L'état d'une Zone est donné par un booléen. */
 	protected boolean etat;
 
 	/**
-	 * Pas envie de faire de getter/setter d'oÃ¹ protected, un choix Ã  re-considÃ©rer
-	 * peut-Ãªtre
+	 * Pas envie de faire de getter/setter d'où protected, un choix à re-considérer
+	 * peut-être
 	 */
 	protected Situation situation;
 	private Element element;
 
 	/**
-	 * On stocke les coordonnÃ©es pour pouvoir les passer au modÃ¨le lors de l'appel Ã 
-	 * [compteVoisines]. situation et element initialisÃ© Ã  null car fait plus tard
-	 * et plus facile Ã  dÃ©tecter si erreur
+	 * On stocke les coordonnées pour pouvoir les passer au modèle lors de l'appel à
+	 * [compteVoisines]. situation et element initialisé à null car fait plus tard
+	 * et plus facile à détecter si erreur
 	 */
 	protected final int x, y;
 
@@ -48,12 +48,12 @@ public class Zone {
 	}
 
 	/**
-	 * Le passage Ã  la gÃ©nÃ©ration suivante se fait en deux Ã©tapes : - D'abord on
-	 * calcule pour chaque Zone ce que sera sont Ã©tat Ã  la gÃ©nÃ©ration suivante
-	 * (mÃ©thode [evalue]). On stocke le rÃ©sultat dans un attribut supplÃ©mentaire
-	 * [prochainEtat]. - Ensuite on met Ã  jour l'ensemble des cellules (mÃ©thode
-	 * [evolue]). Objectif : Ã©viter qu'une Ã©volution immÃ©diate d'une Zone pollue la
-	 * dÃ©cision prise pour une Zone voisine.
+	 * Le passage à la génération suivante se fait en deux étapes : - D'abord on
+	 * calcule pour chaque Zone ce que sera sont état à la génération suivante
+	 * (méthode [evalue]). On stocke le résultat dans un attribut supplémentaire
+	 * [prochainEtat]. - Ensuite on met à jour l'ensemble des cellules (méthode
+	 * [evolue]). Objectif : éviter qu'une évolution immédiate d'une Zone pollue la
+	 * décision prise pour une Zone voisine.
 	 */
 
 	/* On peut jouer avec les indices et Enum.values() OPTION A CONSIDERE */
@@ -66,9 +66,9 @@ public class Zone {
 	}
 
 	/**
-	 * Changer la visibilitÃ©, mettre les classes ailleurs peut peut-Ãªtre faciliter
+	 * Changer la visibilité, mettre les classes ailleurs peut peut-être faciliter
 	 * le code et se passer de ses petites fonctions (Un getter setter si Situation
-	 * et Element Ã  l'extÃ©rieur en public)
+	 * et Element à l'extérieur en public)
 	 */
 	/** Tout ce qui a un rapport avec la Situation */
 	public boolean estNormale() {
@@ -91,7 +91,7 @@ public class Zone {
 		this.element = element;
 	}
 
-	/** Tout ce qui a un rapport avec l'Ã©lÃ©ment */
+	/** Tout ce qui a un rapport avec l'élément */
 
 	public boolean estAir() {
 		return this.getElement() == Element.Air;
@@ -110,12 +110,13 @@ public class Zone {
 	}
 
 	public String toString() {
-		return String.format("Zone de coordonnÃ©es x = %d y = %d \nSituation: %s \nElement: %s\n", this.x, this.y,
+		return String.format("Zone de coordonnées x = %d y = %d \nSituation: %s \nElement: %s\n", this.x, this.y,
 				this.situation.name(), this.getElement().name());
 	}
 	
 	public boolean estAdjacente(Zone z) {
-		return Math.abs(this.x - z.x) <= 1 && Math.abs(this.y - z.y) <=1;
+		return Math.abs(this.x - z.x) == 1 && Math.abs(this.y - z.y) == 0 || Math.abs(this.x - z.x) == 0 && Math.abs(this.y - z.y) == 1;
 	}
 
 }
+

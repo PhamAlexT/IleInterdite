@@ -1,56 +1,68 @@
 package vue;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import modele.Ile;
+import controleur.ActionsJoueur;
 import controleur.Controleur;
+import controleur.DeplacementJoueur;
 
 class VueCommandes extends JPanel {
 	/**
-	 * Pour que le bouton puisse transmettre ses ordres, on garde une rÃ©fÃ©rence au
-	 * modÃ¨le.
+	 * Pour que le bouton puisse transmettre ses ordres, on garde une référence au
+	 * modèle.
 	 */
 	private Ile modele;
 
 	/** Constructeur. */
 	public VueCommandes(Ile modele) {
 		this.modele = modele;
+		DeplacementJoueur depl = new DeplacementJoueur(modele);
 		/**
-		 * On crÃ©e un nouveau bouton, de classe [JButton], en prÃ©cisant le texte qui
-		 * doit l'Ã©tiqueter. Puis on ajoute ce bouton au panneau [this].
+		 * On crée un nouveau bouton, de classe [JButton], en précisant le texte qui
+		 * doit l'étiqueter. Puis on ajoute ce bouton au panneau [this].
 		 */
 		/**
-		 * Le bouton, lorsqu'il est cliquÃ© par l'utilisateur, produit un Ã©vÃ©nement, de
+		 * Le bouton, lorsqu'il est cliqué par l'utilisateur, produit un événement, de
 		 * classe [ActionEvent].
 		 *
-		 * On a ici une variante du schÃ©ma observateur/observÃ© : un objet implÃ©mentant
-		 * une interface [ActionListener] va s'inscrire pour "Ã©couter" les Ã©vÃ©nements
+		 * On a ici une variante du schéma observateur/observé : un objet implémentant
+		 * une interface [ActionListener] va s'inscrire pour "écouter" les événements
 		 * produits par le bouton, et recevoir automatiquements des notifications.
-		 * D'autres variantes d'auditeurs pour des Ã©vÃ©nements particuliers :
+		 * D'autres variantes d'auditeurs pour des événements particuliers :
 		 * [MouseListener], [KeyboardListener], [WindowListener].
 		 *
-		 * Cet observateur va enrichir notre schÃ©ma ModÃ¨le-Vue d'une couche
-		 * intermÃ©diaire ContrÃ´leur, dont l'objectif est de rÃ©cupÃ©rer les Ã©vÃ©nements
-		 * produits par la vue et de les traduire en instructions pour le modÃ¨le. Cette
-		 * strate intermÃ©diaire est potentiellement riche, et peut notamment traduire
-		 * les mÃªmes Ã©vÃ©nements de diffÃ©rentes faÃ§ons en fonction d'un Ã©tat de
-		 * l'application. Ici nous avons un seul bouton rÃ©alisant une seule action,
-		 * notre contrÃ´leur sera donc particuliÃ¨rement simple. Cela nÃ©cessite nÃ©anmoins
-		 * la crÃ©ation d'une classe dÃ©diÃ©e.
+		 * Cet observateur va enrichir notre schéma Modèle-Vue d'une couche
+		 * intermédiaire Contrôleur, dont l'objectif est de récupérer les événements
+		 * produits par la vue et de les traduire en instructions pour le modèle. Cette
+		 * strate intermédiaire est potentiellement riche, et peut notamment traduire
+		 * les mêmes événements de différentes façons en fonction d'un état de
+		 * l'application. Ici nous avons un seul bouton réalisant une seule action,
+		 * notre contrôleur sera donc particulièrement simple. Cela nécessite néanmoins
+		 * la création d'une classe dédiée.
 		 */
 		/**
-		 * Variante : une lambda-expression qui Ã©vite de crÃ©er une classe spÃ©cifique
-		 * pour un contrÃ´leur simplissime.
+		 * Variante : une lambda-expression qui évite de créer une classe spécifique
+		 * pour un contrôleur simplissime.
 		 */
 		JButton boutonFinDuTour = new JButton("Fin du tour");
 		this.add(boutonFinDuTour);
 		boutonFinDuTour.addActionListener(e -> {
 			modele.avance();
+			this.modele.getJoueurs();
+			System.out.println("Changement de tour !");
+			for(int i=0; i<this.modele.getJoueurs().size(); i++) {
+				this.modele.getJoueurs().get(i).resetEnergy();
+				System.out.println("Nombre d'actions réinitialisé : " + this.modele.getJoueurs().get(i).getRemainingA());
+			}
 		});
-		JButton test = new JButton("RÃ©cupÃ©rer un artefact");
+		JButton test = new JButton("Récupérer un artefact");
 		this.add(test);
 		//TODO CHANGE NULL
 		test.addActionListener(e-> { modele.recupererArtefact(null); });
 	}
 }
+

@@ -26,13 +26,13 @@ class VueGrille extends JPanel implements Observer {
 		this.modele = modele;
 		modele.addObserver(this);
 		/**
-		 * DÃ©finition et application d'une taille fixe pour cette zone de l'interface,
-		 * calculÃ©e en fonction du nombre de cellules et de la taille d'affichage.
+		 * Définition et application d'une taille fixe pour cette zone de l'interface,
+		 * calculée en fonction du nombre de cellules et de la taille d'affichage.
 		 */
 		Dimension dim = new Dimension(TAILLE * Ile.LARGEUR, TAILLE * Ile.HAUTEUR);
 		this.setPreferredSize(dim);
 		
-		this.addMouseListener(new DeplacementJoueur(modele,TAILLE));
+		this.addMouseListener(new DeplacementJoueur(modele));
 	}
 
 	public void update() {
@@ -45,7 +45,7 @@ class VueGrille extends JPanel implements Observer {
 			for (int j = 1; j <= Ile.HAUTEUR; j++) {
 				/**
 				 * ... Appeler une fonction d'affichage auxiliaire. On lui fournit les
-				 * informations de dessin [g] et les coordonnÃ©es du coin en haut Ã  gauche.
+				 * informations de dessin [g] et les coordonnées du coin en haut à gauche.
 				 */
 				try {
 					paint(g, modele.getZone(i, j), (i - 1) * TAILLE, (j - 1) * TAILLE);
@@ -112,3 +112,4 @@ class VueGrille extends JPanel implements Observer {
 		g.drawImage(imgJoueur, (j.getZone().getX() - 1) * TAILLE, (j.getZone().getY() - 1) * TAILLE, this);
 	}
 }
+

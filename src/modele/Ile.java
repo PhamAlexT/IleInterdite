@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import autres.Observable;
+import controleur.ActionsJoueur;
 import modele.Zone.Element;
 
 public class Ile extends Observable {
@@ -18,8 +19,8 @@ public class Ile extends Observable {
 	/** Construction : on initialise un tableau de zones. */
 	public Ile() {
 		/**
-		 * Pour Ã©viter les problÃ¨mes aux bords, on ajoute une ligne et une colonne de
-		 * chaque cÃ´tÃ©, dont les zones n'Ã©volueront pas.
+		 * Pour éviter les problèmes aux bords, on ajoute une ligne et une colonne de
+		 * chaque côté, dont les zones n'évolueront pas.
 		 */
 		zones = new Zone[LARGEUR + 2][HAUTEUR + 2];
 		for (int i = 0; i < LARGEUR + 2; i++) {
@@ -34,12 +35,12 @@ public class Ile extends Observable {
 
 	public class AccesHorsIle extends Exception{
 		public AccesHorsIle() {
-			System.out.println("Tentative d'accÃ¨s Ã  une zone hors de l'Ã®le");
+			System.out.println("Tentative d'accès à une zone hors de l'île");
 		}
 	}
 	/**
-	 * Initialisation alÃ©atoire des zones, exceptÃ©es celle des bords qui ont Ã©tÃ©
-	 * ajoutÃ©s.
+	 * Initialisation aléatoire des zones, exceptées celle des bords qui ont été
+	 * ajoutés.
 	 */
 	public void init() {
 		initCellules();
@@ -70,9 +71,12 @@ public class Ile extends Observable {
 		}
 	}
 
+	//Il faudrait les placer de manière aléatoire sur la map quand on aura le temps
 	public void initJoueurs() {
-		Joueur p = new Joueur(this, zones[1][1]);
-		joueurs.add(p);
+		Joueur p1 = new Joueur(this, zones[1][1]);
+		joueurs.add(p1);
+		Joueur p2 = new Joueur(this, zones[1][2]);
+		joueurs.add(p2);
 	}
 
 	/**
@@ -107,7 +111,11 @@ public class Ile extends Observable {
 	public void deplacementJoueur(Joueur j, Zone nZ) throws AccesHorsIle {
 		if (nZ.x<1 || nZ.x> LARGEUR || (nZ.y<1 || nZ.y> HAUTEUR)) throw new AccesHorsIle();
 		if (!nZ.estSubmergee() && j.getZone().estAdjacente(nZ)) {
-			j.seDeplace(nZ);
+			if(j.action() == true) {
+				j.seDeplace(nZ);
+			}else {
+				System.out.println("Le joueur n'a plus d'action disponible !");
+			}
 			notifyObservers();
 		}
 	}
@@ -121,7 +129,7 @@ public class Ile extends Observable {
 	}
 
 	/**
-	 * Une mÃ©thode pour renvoyer la zone aux coordonnÃ©es choisies (sera utilisÃ©e par
+	 * Une méthode pour renvoyer la zone aux coordonnées choisies (sera utilisée par
 	 * la vue).
 	 * @throws AccesHorsIle 
 	 */
@@ -139,3 +147,4 @@ public class Ile extends Observable {
 		return this.joueurs;
 	}
 }
+

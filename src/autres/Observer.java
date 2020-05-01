@@ -2,8 +2,9 @@ package autres;
 
 public interface Observer {
     /**
-     * Un observateur doit possÃ©der une mÃ©thode [update] dÃ©clenchant la mise Ã 
+     * Un observateur doit posséder une méthode [update] déclenchant la mise à
      * jour.
      */
     public void update();
 }
+
