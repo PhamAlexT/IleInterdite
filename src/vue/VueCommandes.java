@@ -20,8 +20,6 @@ class VueCommandes extends JPanel {
 		 * On crée un nouveau bouton, de classe [JButton], en précisant le texte qui
 		 * doit l'étiqueter. Puis on ajoute ce bouton au panneau [this].
 		 */
-		JButton boutonAvance = new JButton("Fin du tour");
-		this.add(boutonAvance);
 		/**
 		 * Le bouton, lorsqu'il est cliqué par l'utilisateur, produit un événement, de
 		 * classe [ActionEvent].
@@ -41,18 +39,17 @@ class VueCommandes extends JPanel {
 		 * notre contrôleur sera donc particulièrement simple. Cela nécessite néanmoins
 		 * la création d'une classe dédiée.
 		 */
-		Controleur ctrl = new Controleur(modele);
-		/** Enregistrement du contrôleur comme auditeur du bouton. */
-		boutonAvance.addActionListener(ctrl);
-
 		/**
 		 * Variante : une lambda-expression qui évite de créer une classe spécifique
 		 * pour un contrôleur simplissime.
-		 *
-		 * JButton boutonAvance = new JButton(">"); this.add(boutonAvance);
-		 * boutonAvance.addActionListener(e -> { modele.avance(); });
-		 *
 		 */
-
+		JButton boutonFinDuTour = new JButton("Fin du tour");
+		this.add(boutonFinDuTour);
+		boutonFinDuTour.addActionListener(e -> {
+			modele.avance();
+		});
+		JButton test = new JButton("Testage");
+		this.add(test);
+		test.addActionListener(e-> { modele.deplacementJoueur(modele.getJoueurs().get(0), modele.getZone(2, 2)); });
 	}
 }
