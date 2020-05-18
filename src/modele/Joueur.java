@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 
+import controleur.RamasserArtefact;
+
 public class Joueur {
 	private Ile ile;
 	private Zone z;
@@ -39,11 +41,12 @@ public class Joueur {
 	public void recupereArtefact(Objet truc) {
 		items.add(truc);
 		if (truc instanceof Clefs) {
+			
 			this.nbCles ++;
-			System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus");
+			System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus" + truc.e.toString());
 		} else {
 			this.nbArtefact ++;
-			System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus");
+			System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus" + truc.e.toString());
 		}
 	}
 	
@@ -93,13 +96,18 @@ public class Joueur {
 	}
 	
 	public void enleveCles(Clefs c) {
+		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
 			if (this.items.get(i) instanceof Clefs) {
 				if (c.cleEgales((Clefs) this.items.get(i))) {
 					this.items.remove(i);
 					this.nbCles --;
-					System.out.println("Le joueur " + this.nbJoueur + " a perdu une cle");
+					System.out.println("Le joueur " + this.nbJoueur + " a perdu une cle" + c.e.toString());
+					nb ++;
 				}
+			}
+			if (nb == RamasserArtefact.combienDeCles) {
+				return;
 			}
 		}
 	}

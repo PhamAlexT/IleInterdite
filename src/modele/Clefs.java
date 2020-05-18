@@ -13,7 +13,7 @@ public class Clefs extends Objet {
 	}	
 	
 	public static Clefs aleaClefs() {
-		int elem = rand.nextInt(Element.values().length); //Borne droite exclu pour rappel
+		int elem = rand.nextInt(Element.values().length -1); //Borne droite exclu pour rappel
 		
 		Clefs c = new Clefs(Element.values()[elem]);
 		
@@ -29,6 +29,6 @@ public class Clefs extends Objet {
 	}
 	
 	public String toString() {
-		return "Clé";
+		return "Cle";
 	}
 }

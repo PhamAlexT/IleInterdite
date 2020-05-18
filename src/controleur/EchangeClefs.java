@@ -3,12 +3,17 @@ package controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import modele.Clefs;
+import modele.Element;
 import modele.Joueur;
 
 public class EchangeClefs extends ActionJoueur implements ActionListener {
 
+	static Random rand = new Random();
+	
+	
 	public EchangeClefs(Joueur j) {
 		super(j);
 		// TODO Auto-generated constructor stub
@@ -22,7 +27,7 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 					//le joeueur qui joue donne une cle a l'autre joueur present sur sa case
 					while(donne !=1) {
 						//choix aleatoire de l'artefact
-						int alea = (int) Math.floor(Math.random() * j.getNbArtefacts());
+						int alea = rand.nextInt(j.getInventaire().size());
 						//on verifie que ces un object de type artefact
 						if (j.getInventaire().get(alea) instanceof Clefs) {
 							Clefs c  = (Clefs) j.getInventaire().get(alea);
