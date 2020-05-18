@@ -55,8 +55,9 @@ public class DeroulementPartie extends Observable implements Observer{
 		int chance = rand.nextInt(100);
 		if(0 <= chance && chance < 20) {
 			Joueur JoueurA = getJoueur();
-			JoueurA.recupereArtefact(Clefs.aleaClefs());
-			System.out.println("Ce joueur recoit une clef !");
+			Clefs cAlea = Clefs.aleaClefs();
+			JoueurA.recupereArtefact(cAlea);
+			System.out.println("Ce joueur recoit une clef " + cAlea.e.toString());
 			System.out.println("Le joueur " + JoueurA.getNb() + " possede " + JoueurA.getNbCles() + " cles");
 		}
 	}

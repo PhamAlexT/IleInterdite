@@ -18,7 +18,7 @@ import modele.Ile.AccesHorsIle;
 public class RamasserArtefact extends ActionJoueur implements ActionListener{
 
 	//A modifier selon l'envie
-	public final static int combienDeCles = 2;
+	private final static int combienDeCles = 2;
 	public RamasserArtefact(Joueur j) {
 		super(j);
 		// TODO Auto-generated constructor stub
@@ -36,7 +36,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener{
 			System.out.println("Un artefact de type Air a ete ramasser !");
 			//on enleve les clefs qu'on a utilise
 			Clefs cA = new Clefs(modele.Element.Air);
-			j.enleveCles(cA);
+			j.enleveCles(cA, this.combienDeCles);
 			
 		}
 		//Zone avec un artefact Eau
@@ -45,7 +45,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener{
 			System.out.println("Un artefact de type Eau a ete ramasser !");
 			//on enleve les clefs qu'on a utilise
 			Clefs cE = new Clefs(modele.Element.Eau);
-			j.enleveCles(cE);
+			j.enleveCles(cE, this.combienDeCles);
 			
 		}
 		//Zone avec un artefcat Terre
@@ -54,7 +54,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener{
 			System.out.println("Un artefact de type Terre a ete ramasser !");
 			//on enleve les clefs qu'on a utilise
 			Clefs cT = new Clefs(modele.Element.Terre);
-			j.enleveCles(cT);
+			j.enleveCles(cT, this.combienDeCles);
 			
 		}
 		//Zone avec un artefact Feu
@@ -63,7 +63,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener{
 			System.out.println("Un artefact de type Feu a ete ramasser !");
 			//on enleve les clefs qu'on a utilise
 			Clefs cF = new Clefs(modele.Element.Feu);
-			j.enleveCles(cF);
+			j.enleveCles(cF, this.combienDeCles);
 		}
 		this.notifyObservers();
 	}

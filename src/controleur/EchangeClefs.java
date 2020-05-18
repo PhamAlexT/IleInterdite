@@ -33,9 +33,9 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 							Clefs c  = (Clefs) j.getInventaire().get(alea);
 							//on l'ajoute au joueur
 							j2.recupereArtefact(c);
-							System.out.println("Le Joueur " + j2.getNb() + " recoit une cle " + c.getElement());
+							//System.out.println("Le Joueur " + j2.getNb() + " recoit une cle " + c.getElement());
 							//on l'enleve a celui qui lui a donne
-							j.enleveCles(c);
+							j.enleveCles(c, 1);
 							//echange effectue 
 							donne = 1;
 						}

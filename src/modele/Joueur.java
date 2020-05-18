@@ -41,7 +41,6 @@ public class Joueur {
 	public void recupereArtefact(Objet truc) {
 		items.add(truc);
 		if (truc instanceof Clefs) {
-			
 			this.nbCles ++;
 			System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus" + truc.e.toString());
 		} else {
@@ -69,13 +68,16 @@ public class Joueur {
 	}**/
 	//Fonction parcourant la liste des items et indiquant combien il y a de cles  de type e
 	public int combienCles(Element e) {
+		//System.out.println("Element" + e.toString());
 		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
 			Object obj = this.items.get(i);	
+			//System.out.println("Element ds la liste " + e.toString());
 			if (obj instanceof Clefs) {
-				if (e.equals(((Clefs) obj).getElement())) {
-					nb ++;
-					
+				//System.out.println("type cles");
+				if(((Clefs) obj).e.equals(e)) {			
+					//System.out.println("egaux");
+					nb ++;	
 				}
 			}
 		}
@@ -95,7 +97,7 @@ public class Joueur {
 		return this.items;
 	}
 	
-	public void enleveCles(Clefs c) {
+	public void enleveCles(Clefs c, int combien) {
 		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
 			if (this.items.get(i) instanceof Clefs) {
@@ -106,7 +108,7 @@ public class Joueur {
 					nb ++;
 				}
 			}
-			if (nb == RamasserArtefact.combienDeCles) {
+			if (nb == combien) {
 				return;
 			}
 		}
