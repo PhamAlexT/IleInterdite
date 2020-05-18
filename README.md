@@ -1,6 +1,6 @@
 # Notes de développement
 
-Le sujet est disponible [https://www.lri.fr/~blsk/POGL/IleInterdite.pdf](ici).
+Le sujet est disponible [ici](https://www.lri.fr/~blsk/POGL/IleInterdite.pdf).
 
 ## Structure globale du programme
 
