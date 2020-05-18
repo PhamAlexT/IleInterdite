@@ -6,7 +6,6 @@ import java.util.Random;
 
 import autres.Observable;
 import modele.Ile.AccesHorsIle;
-import modele.Zone.Element;
 
 public class Ile extends Observable {
 	/** On fixe la taille de la grille. */

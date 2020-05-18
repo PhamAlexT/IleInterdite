@@ -41,7 +41,6 @@ public class VueJoueur extends JPanel implements Observer  {
 	
 	public void paint() {
 		labelJoueur.setText("Joueur " + dp.getindiceJoueurModulo());
-		//labelTourRestant.setText("Nombre de tours restants: " + Integer.toString(dp.getAJActuel().getnbActionsMax() - dp.getAJActuel().nbActionsUtilisees()));
 		labelTourRestant.setText("Nombre de tours restants: " + dp.getActionsRestantes());
 
 	}

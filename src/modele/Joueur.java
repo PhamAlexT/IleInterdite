@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Joueur {
 	private Ile ile;
 	private Zone z;
-	private ArrayList<Object> items;
+	private ArrayList<Objet> items;
 	private int nbCles;
 	private int nbArtefact;
 	private int nbJoueur;
@@ -14,7 +14,7 @@ public class Joueur {
 		this.ile = ile;
 		this.z = z;
 		this.nbJoueur = n;
-		this.items = new ArrayList<Object>();
+		this.items = new ArrayList<Objet>();
 		this.nbCles = 0;
 		this.nbArtefact = 0;
 	}
@@ -36,7 +36,7 @@ public class Joueur {
 	public Zone getZone() {
 		return this.z;
 	}
-	public void recupereArtefact(Object truc) {
+	public void recupereArtefact(Objet truc) {
 		items.add(truc);
 		if (truc instanceof Clefs) {
 			this.nbCles ++;
@@ -65,7 +65,7 @@ public class Joueur {
 		return false;
 	}**/
 	//Fonction parcourant la liste des items et indiquant combien il y a de cles  de type e
-	public int combienCles(modele.Zone.Element e) {
+	public int combienCles(Element e) {
 		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
 			Object obj = this.items.get(i);	
@@ -88,7 +88,7 @@ public class Joueur {
 		return this.nbArtefact;
 	}
 	
-	public ArrayList<Object> getInventaire(){
+	public ArrayList<Objet> getInventaire(){
 		return this.items;
 	}
 	

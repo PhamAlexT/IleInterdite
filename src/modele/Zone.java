@@ -6,10 +6,6 @@ enum Situation {
 
 public class Zone {
 
-	public enum Element {
-		Air, Eau, Terre, Feu, Neutre
-	}
-
 	/** On conserve un pointeur vers la classe principale du modele. */
 	private Ile ile;
 

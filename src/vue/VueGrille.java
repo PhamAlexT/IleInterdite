@@ -132,7 +132,7 @@ class VueGrille extends JPanel implements Observer {
 	}
 	
 	public void paintHeliport(Graphics g, Zone z) throws IOException {
-		Image imgHeliport = ImageIO.read(new File("res/Heliport.png"));
+		Image imgHeliport = ImageIO.read(new File("res/heliport.png"));
 		g.drawImage(imgHeliport, (z.getX() - 1) * TAILLE, (z.getY() - 1) * TAILLE, this);
 	}
 }

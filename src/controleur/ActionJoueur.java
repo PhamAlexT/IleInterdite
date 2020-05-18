@@ -1,9 +1,10 @@
 package controleur;
 
+import autres.Observable;
 import modele.Joueur;
 import vue.VueJoueur;
 
-public abstract class ActionJoueur {
+public abstract class ActionJoueur extends Observable {
 	int nbAction;
 	Joueur j;
 	

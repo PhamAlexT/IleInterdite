@@ -31,6 +31,7 @@ public class AssecherZone extends ActionJoueur implements MouseListener {
 				Zone z = ile.getZone(x, y);
 				if (ile.assecherZone(j, z)) {
 					this.incrNbAction();
+					this.notifyObservers();
 				}
 				;
 			} catch (AccesHorsIle e) {

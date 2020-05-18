@@ -1,8 +1,10 @@
 package controleur;
 
+import autres.Observable;
+import autres.Observer;
 import modele.Joueur;
 
-public class ActionsJoueurs {
+public class ActionsJoueurs extends Observable implements Observer{
 	Joueur j;
 	AssecherZone aZ;
 	DeplacementJoueur dJ;
@@ -17,6 +19,10 @@ public class ActionsJoueurs {
 		dJ = new DeplacementJoueur(j);
 		rA = new RamasserArtefact(j);
 		ec = new EchangeClefs(j);
+		
+		aZ.addObserver(this);
+		dJ.addObserver(this);
+		rA.addObserver(this);
 	}
 	
 	public DeplacementJoueur getDeplacementJoueur() {
@@ -42,5 +48,11 @@ public class ActionsJoueurs {
 	}
 	public int nbActionsUtilisees() {
 		return aZ.getNbAction()+dJ.getNbAction()+rA.getNbAction() + ec.getNbAction();
+	}
+
+	@Override
+	public void update() {
+		this.notifyObservers();
+		
 	}
 }

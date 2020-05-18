@@ -1,13 +1,11 @@
 package modele;
 
-import modele.Zone.Element;
-
-public class Artefact {
+public class Artefact extends Objet {
 
 private Element element;
 	
 	public Artefact(Element e) {
-		this.element = null;
+		super(e);
 	}
 	
 	public boolean artefactEgal(Artefact a) {

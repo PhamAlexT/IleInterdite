@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import autres.Observable;
+import autres.Observer;
 import controleur.ActionsJoueurs;
-public class DeroulementPartie extends Observable {
+public class DeroulementPartie extends Observable implements Observer{
 	
 	Random rand = new Random();
 	
@@ -13,18 +14,23 @@ public class DeroulementPartie extends Observable {
 	private Joueur j;
 	private ActionsJoueurs ajActuel;
 	private int indiceJoueur;
+	private int actionsRestantes;
 
 	public DeroulementPartie(Ile ile) {
 		this.ile = ile;
 		indiceJoueur = 0;
 		this.j = ile.getJoueurs().get(indiceJoueur);
 		ajActuel = new ActionsJoueurs(j);
+		actionsRestantes = ajActuel.getnbActionsMax();
+		ajActuel.addObserver(this);
 	}
 	
 	public void prochainJoueur() {
 		indiceJoueur++;
 		j = ile.getJoueurs().get(indiceJoueur % ile.getJoueurs().size());
 		ajActuel = new ActionsJoueurs(j);
+		actionsRestantes = ajActuel.getnbActionsMax();
+		ajActuel.addObserver(this);
 		this.notifyObservers();
 	}
 	
@@ -71,5 +77,12 @@ public class DeroulementPartie extends Observable {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void update() {
+		actionsRestantes = getActionsRestantes();
+		this.notifyObservers();
+		
 	}
 }

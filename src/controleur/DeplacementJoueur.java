@@ -28,6 +28,7 @@ public class DeplacementJoueur extends ActionJoueur implements MouseListener {
 				Zone z = ile.getZone(x, y);
 				if (ile.deplacementJoueur(j, z)) {
 					this.incrNbAction();
+					this.notifyObservers();
 				}
 				;
 			} catch (AccesHorsIle e) {
