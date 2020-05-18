@@ -13,6 +13,7 @@ import modele.Joueur;
 import controleur.ActionsJoueurs;
 import controleur.Controleur;
 import controleur.DeplacementJoueur;
+import controleur.EchangeClefs;
 import controleur.RamasserArtefact;
 
 class VueCommandes extends JPanel implements Observer{
@@ -25,11 +26,14 @@ class VueCommandes extends JPanel implements Observer{
 	private VueGrille vg;
 	private VueJoueur vj;
 	private RamasserArtefact ra;
+	private EchangeClefs ea;
+	
 	
 	public VueCommandes(Ile modele, DeroulementPartie dp) {
 		this.modele = modele;
 		this.liaison = dp;
 		this.ra = new RamasserArtefact(liaison.getJoueur());
+		this.ea = new EchangeClefs(liaison.getJoueur());
 		liaison.addObserver(this);
 		
 		JButton boutonFinDuTour = new JButton("Fin du tour");
@@ -49,10 +53,15 @@ class VueCommandes extends JPanel implements Observer{
 			}
 		});
 		
-		JButton test = new JButton("Recuperer un artefact");
-		test.addActionListener( e -> ra.donnerArtefact(liaison.getJoueur()));
+		JButton recupArte = new JButton("Recuperer un artefact");
+		recupArte.addActionListener( e -> ra.donnerArtefact(liaison.getJoueur()));
 		
-		this.add(test);
+		
+		JButton echangeArte = new JButton("Donner une cle");
+		echangeArte.addActionListener( e -> ea.echange(liaison.getJoueur(), modele.getJoueurs()));
+		
+		this.add(echangeArte);
+		this.add(recupArte);
 		this.add(boutonFinDuTour);
 	}
 	

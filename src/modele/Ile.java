@@ -146,7 +146,6 @@ public class Ile extends Observable {
 		while (zoneAModif.size() < 3) {
 			Zone z = zoneNonSubmergee.get(generateur.nextInt(zoneNonSubmergee.size()));
 			//Une zone a  modifie ne doit pas l'heliport et son element soit est Neutre
-			// (a voir : ici les artefacts ne pourront jamais disparaitre)
 			if (!zoneAModif.contains(z) && (z.estNeutre())){
 				zoneAModif.add(z);
 			}

@@ -10,11 +10,11 @@ public class Clefs {
 	private Element element;
 	
 	public Clefs(Element e) {
-		this.element = null;
+		this.element = e;
 	}	
 	
 	public static Clefs aleaClefs() {
-		int elem = rand.nextInt(4);
+		int elem = rand.nextInt(5);
 		Clefs c = new Clefs(null);
 		if(elem == 0) {
 			c.element = Element.Air;
@@ -35,4 +35,7 @@ public class Clefs {
 		return this.element;
 	}
 
+	public boolean cleEgales(Clefs c) {
+		return this.element == c.element;
+	}
 }

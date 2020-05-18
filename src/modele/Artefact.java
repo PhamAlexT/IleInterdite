@@ -10,4 +10,7 @@ private Element element;
 		this.element = null;
 	}
 	
+	public boolean artefactEgal(Artefact a) {
+		return this.element == a.element;
+	}
 }

@@ -9,7 +9,7 @@ public class DeroulementPartie extends Observable {
 	
 	Random rand = new Random();
 	
-	public Ile ile;
+	private Ile ile;
 	private Joueur j;
 	private ActionsJoueurs ajActuel;
 	private int indiceJoueur;
@@ -51,7 +51,7 @@ public class DeroulementPartie extends Observable {
 			Joueur JoueurA = getJoueur();
 			JoueurA.recupereArtefact(Clefs.aleaClefs());
 			System.out.println("Ce joueur recoit une clef !");
-			System.out.println("Le joueur " + JoueurA.getNb() + " possede " + JoueurA.getNbCles() + " cls");
+			System.out.println("Le joueur " + JoueurA.getNb() + " possede " + JoueurA.getNbCles() + " cles");
 		}
 	}
 	

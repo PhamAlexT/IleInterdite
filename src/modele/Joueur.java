@@ -2,8 +2,6 @@ package modele;
 
 import java.util.ArrayList;
 
-import org.w3c.dom.Element;
-
 public class Joueur {
 	private Ile ile;
 	private Zone z;
@@ -42,27 +40,47 @@ public class Joueur {
 		items.add(truc);
 		if (truc instanceof Clefs) {
 			this.nbCles ++;
-			System.out.println(" Le joeuer a une cle en plus");
+			System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus");
 		} else {
 			this.nbArtefact ++;
-			System.out.println(" Le joeuer a unn artefact en plus");
+			System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus");
 		}
 	}
 	
+	/**
 	//Fonction verifiant si dans la liste le joeueur possede une cle de type l'artefact qu'il veut recuperer
 	public boolean verifCle(modele.Zone.Element e) {
-		for (Object obj : this.items) {
+		for (int i = 0; i < this.items.size(); i++) {
+			Object obj = this.items.get(i);	
 			if (obj instanceof Clefs) {
 				if (e.equals(((Clefs) obj).getElement())) {
-					System.out.println("Le joeur a bien une cle !");
+					System.out.println("Le Joueur " + this.nbJoueur + " a bien une cle !");
+					this.enleveCles((Clefs) obj);
+					System.out.println("La cle pour ramasser cet artefact a etait utilise ");
 					return true;
 				}
 			}
 		}
-		System.out.println("Le joeur n'a pas de cle !");
+		System.out.println("Le Joueur " + this.nbJoueur + " n'a pas de cle !");
 		return false;
+	}**/
+	//Fonction parcourant la liste des items et indiquant combien il y a de cles  de type e
+	public int combienCles(modele.Zone.Element e) {
+		int nb = 0;
+		for (int i = 0; i < this.items.size(); i++) {
+			Object obj = this.items.get(i);	
+			if (obj instanceof Clefs) {
+				if (e.equals(((Clefs) obj).getElement())) {
+					nb ++;
+					
+				}
+			}
+		}
+		System.out.println("Le Joueur " + this.nbJoueur + " a " + nb + " cles" );
+		return nb;
 	}
-		
+	
+			
 	public int getNbCles() {
 		return this.nbCles;
 	}
@@ -70,8 +88,32 @@ public class Joueur {
 		return this.nbArtefact;
 	}
 	
-	public int getNbObjects() {
-		return this.getNbCles() + this.getNbArtefacts();
+	public ArrayList<Object> getInventaire(){
+		return this.items;
+	}
+	
+	public void enleveCles(Clefs c) {
+		for (int i = 0; i < this.items.size(); i++) {
+			if (this.items.get(i) instanceof Clefs) {
+				if (c.cleEgales((Clefs) this.items.get(i))) {
+					this.items.remove(i);
+					this.nbCles --;
+					System.out.println("Le joueur " + this.nbJoueur + " a perdu une cle");
+				}
+			}
+		}
+	}
+	
+	public void enleveArtefact(Artefact a) {
+		for (int i = 0; i < this.items.size(); i++) {
+			if (this.items.get(i) instanceof Artefact) {
+				if (a.artefactEgal((Artefact) this.items.get(i))) {
+					this.items.remove(i);
+					this.nbArtefact --;
+					System.out.println("Le joueur " + this.nbJoueur  + " perdu un artefact");
+				}
+			}
+		}
 	}
 }
 

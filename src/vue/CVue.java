@@ -48,8 +48,8 @@ public class CVue extends JFrame {
 	commandes.setVueJoueur(vuej);
 	this.add(vuej,BorderLayout.PAGE_START);
 	
-	vuei = new VueInventaire(dp.ile);
-	this.add(vuei,BorderLayout.EAST);
+	vuei = new VueInventaire(modele);
+	//this.add(vuei,BorderLayout.EAST);
 	
 	/**
 	 * Fin de la plomberie :
