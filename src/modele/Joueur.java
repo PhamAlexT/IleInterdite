@@ -93,6 +93,10 @@ public class Joueur {
 		return this.nbArtefact;
 	}
 	
+	public int getNbObjet() {
+		return this.nbArtefact + this.nbCles;
+	}
+	
 	public ArrayList<Objet> getInventaire(){
 		return this.items;
 	}
@@ -126,4 +130,5 @@ public class Joueur {
 		}
 	}
 }
+
 
