@@ -30,19 +30,7 @@ public class VueInventaire extends JPanel implements Observer {
 	private final int espacement = cote/2;
 	private static int marge; 
 
-	/*
-	 * private BufferedImage cleEau = ImageIO.read(new File("res/Waterkey.png"));
-	 * private BufferedImage cleFeu = ImageIO.read(new File("res/Firekey.png"));
-	 * private BufferedImage cleAir = ImageIO.read(new File("res/Windkey.png"));
-	 * private BufferedImage cleTerre = ImageIO.read(new File("res/Earthkey.png"));
-	 * 
-	 * private BufferedImage artEau = ImageIO.read(new File("res/Waterart.png"));
-	 * private BufferedImage artFeu = ImageIO.read(new File("res/Fireart.png"));
-	 * private BufferedImage artWind = ImageIO.read(new File("res/Windart.png"));
-	 * private BufferedImage artTerre = ImageIO.read(new File("res/Earthart.png"));
-	 */
 
-	
 	public VueInventaire(Ile mod) throws IOException {
 		this.modele = mod;
 		this.setLayout(null);
@@ -67,16 +55,17 @@ public class VueInventaire extends JPanel implements Observer {
 	}
 	
 	public void update() {
-		
+		repaint();
 	}
-	
 	public void paintInventaireJoueur(Graphics g, Joueur j) {
+		int nbJ = modele.getJoueurs().indexOf(j);
 		if (!j.getInventaire().isEmpty()) {
-			for (Objet o:j.getInventaire()) {
+			for (int i = 0; i < j.getInventaire().size();i++) {
+				Objet o = j.getInventaire().get(i);
 				String chemin = "res/"+o.getClass().getSimpleName()+"/"+o.getElement().toString()+".png";
 				try {
 					Image img = ImageIO.read(new File(chemin));
-					g.drawImage(img,32,32,this);
+					g.drawImage(img,60+32*i,32+nbJ*32,this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -86,10 +75,15 @@ public class VueInventaire extends JPanel implements Observer {
 	}
 	
 	public void paintComponent(Graphics g) {
-		super.repaint();
 		for (Joueur j:this.modele.getJoueurs()) {
 			paintInventaireJoueur(g,j);
 		}
+
+	}
+	
+	public void paint(Graphics g) {
+		super.paint(g);
+	
 	}
 	
 	
