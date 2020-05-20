@@ -108,6 +108,7 @@ class VueGrille extends JPanel implements Observer {
 	private void paint(Graphics g, Zone z, int x, int y) {
 		if (!liaison.getAJActuel().estLibre()) {
 			this.removeMouseListener(liaison.getAJActuel().getDeplacementJoueur());
+			this.removeMouseListener(liaison.getAJActuel().getaZ());
 		}
 		Color c = getColorFromElement(z).brighter();
 

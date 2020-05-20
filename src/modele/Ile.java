@@ -159,7 +159,7 @@ public class Ile extends Observable {
 	public boolean deplacementJoueur(Joueur j, Zone nZ) throws AccesHorsIle {
 		if (nZ.x < 1 || nZ.x > LARGEUR || (nZ.y < 1 || nZ.y > HAUTEUR))
 			throw new AccesHorsIle();
-		if (j.getZone().estAdjacente(nZ)) {
+		if (j.getZone().estUnDeplacementPossible(nZ) && !nZ.estSubmergee()) {
 			j.seDeplace(nZ);
 			notifyObservers();
 			return true;
@@ -172,7 +172,7 @@ public class Ile extends Observable {
 		if (zV.x < 1 || zV.x > LARGEUR || (zV.y < 1 || zV.y > HAUTEUR))
 			throw new AccesHorsIle();
 		
-		if (j.getZone().memeZone(zV)) {
+		if (j.getZone().estAdjacente(zV)) {
 			if (zV.estInondee()) {
 				zV.situation = Situation.Normale;
 				notifyObservers();

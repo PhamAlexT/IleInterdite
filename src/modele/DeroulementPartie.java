@@ -59,6 +59,7 @@ public class DeroulementPartie extends Observable implements Observer{
 			JoueurA.recupereArtefact(cAlea);
 			System.out.println("Ce joueur recoit une clef " + cAlea.e.toString());
 			System.out.println("Le joueur " + JoueurA.getNb() + " possede " + JoueurA.getNbCles() + " cles");
+			this.notifyObservers();
 		}
 	}
 	

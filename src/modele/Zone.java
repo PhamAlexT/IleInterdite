@@ -120,10 +120,13 @@ public class Zone {
 				this.situation.name(), this.getElement().name());
 	}
 	
-	public boolean estAdjacente(Zone z) {
+	public boolean estUnDeplacementPossible(Zone z) {
 		return Math.abs(this.x - z.x) == 1 && Math.abs(this.y - z.y) == 0 || Math.abs(this.x - z.x) == 0 && Math.abs(this.y - z.y) == 1;
 	}
 	
+	public boolean estAdjacente(Zone z) {
+		return Math.abs(this.x - z.x ) <= 1 && Math.abs(this.y - z.y) <=1;
+	}
 	public boolean memeZone(Zone z) {
 		return this==z;
 	}
