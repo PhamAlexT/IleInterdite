@@ -8,22 +8,17 @@ public class Joueur {
 	private Ile ile;
 	private Zone z;
 	private ArrayList<Objet> items;
-	private int nbCles;
-	private int nbArtefact;
 	private int nbJoueur;
 	
 	public Joueur(Ile ile, Zone z, int n) {
 		this.ile = ile;
 		this.z = z;
-		this.nbJoueur = n;
+		//this.nbJoueur = n;
 		this.items = new ArrayList<Objet>();
-		this.nbCles = 0;
-		this.nbArtefact = 0;
 	}
 	
-	public int getNb() {
-		return this.nbJoueur;
-	}
+	
+	
 	public void seDeplace(Zone nz) {
 			this.z = nz;
 	}
@@ -40,12 +35,10 @@ public class Joueur {
 	}
 	public void recupereArtefact(Objet truc) {
 		items.add(truc);
-		if (truc instanceof Clefs) {
-			this.nbCles ++;
-			System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus" + truc.e.toString());
+		if (truc instanceof Clef) {
+			//System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus" + truc.e.toString());
 		} else {
-			this.nbArtefact ++;
-			System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus" + truc.e.toString());
+			//System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus" + truc.e.toString());
 		}
 	}
 	
@@ -73,42 +66,50 @@ public class Joueur {
 		for (int i = 0; i < this.items.size(); i++) {
 			Object obj = this.items.get(i);	
 			//System.out.println("Element ds la liste " + e.toString());
-			if (obj instanceof Clefs) {
+			if (obj instanceof Clef) {
 				//System.out.println("type cles");
-				if(((Clefs) obj).e.equals(e)) {			
+				if(((Clef) obj).e.equals(e)) {			
 					//System.out.println("egaux");
 					nb ++;	
 				}
 			}
 		}
-		System.out.println("Le Joueur " + this.nbJoueur + " a " + nb + " cles" );
+		//System.out.println("Le Joueur " + this.nbJoueur + " a " + nb + " cles" );
 		return nb;
 	}
 	
 			
 	public int getNbCles() {
-		return this.nbCles;
+		int res = 0;
+		for (Objet o:items) {
+			if (o instanceof Clef) 
+				res++;
+		}
+		return res;
 	}
 	public int getNbArtefacts() {
-		return this.nbArtefact;
+		int res = 0;
+		for (Objet o:items) {
+			if (o instanceof Artefact) 
+				res++;
+		}
+		return res;
 	}
 	
 	public int getNbObjet() {
-		return this.nbArtefact + this.nbCles;
+		return items.size();
 	}
 	
 	public ArrayList<Objet> getInventaire(){
 		return this.items;
 	}
 	
-	public void enleveCles(Clefs c, int combien) {
+	public void enleveCles(Clef c, int combien) {
 		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
-			if (this.items.get(i) instanceof Clefs) {
-				if (c.cleEgales((Clefs) this.items.get(i))) {
+			if (this.items.get(i) instanceof Clef) {
+				if (c.cleEgales((Clef) this.items.get(i))) {
 					this.items.remove(i);
-					this.nbCles --;
-					System.out.println("Le joueur " + this.nbJoueur + " a perdu une cle" + c.e.toString());
 					nb ++;
 				}
 			}
@@ -123,8 +124,6 @@ public class Joueur {
 			if (this.items.get(i) instanceof Artefact) {
 				if (a.artefactEgal((Artefact) this.items.get(i))) {
 					this.items.remove(i);
-					this.nbArtefact --;
-					System.out.println("Le joueur " + this.nbJoueur  + " perdu un artefact");
 				}
 			}
 		}

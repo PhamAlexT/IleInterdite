@@ -128,7 +128,7 @@ class VueGrille extends JPanel implements Observer {
 	}
 
 	public void paintJoueur(Graphics g, Joueur j) throws IOException {
-		Image imgJoueur = ImageIO.read(new File("res/Player" + j.getNb() + ".png"));
+		Image imgJoueur = ImageIO.read(new File("res/Player" + Integer.toString(modele.getJoueurs().indexOf(j)+1) + ".png"));
 		g.drawImage(imgJoueur, (j.getZone().getX() - 1) * TAILLE, (j.getZone().getY() - 1) * TAILLE, this);
 	}
 	

@@ -40,7 +40,7 @@ public class ActionsJoueurs extends Observable implements Observer{
 	public boolean estLibre() {
 		int nbActionsUsed = aZ.getNbAction()+dJ.getNbAction()+rA.getNbAction() + ec.getNbAction();
 		//System.out.println(nbActionsUsed);
-		return nbActionsUsed < nbActionsMax;
+		return nbActionsUsed < nbActionsMax && !j.getZone().estSubmergee();
 	}
 	
 	public int getnbActionsMax() {

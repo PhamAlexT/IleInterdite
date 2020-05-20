@@ -24,7 +24,6 @@ public class AssecherZone extends ActionJoueur implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		if (SwingUtilities.isRightMouseButton(arg0)) {
-			System.out.println("Arrosage");
 			try {
 				int x = (arg0.getX() / 32) + 1;
 				int y = (arg0.getY() / 32) + 1;
