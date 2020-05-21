@@ -20,14 +20,11 @@ public class VueJoueur extends JPanel implements Observer  {
 	public VueJoueur(DeroulementPartie dp) {
 		this.dp = dp;
 		dp.addObserver(this);
-		labelJoueur = new JLabel("Joueur " + Integer.toString(dp.getindiceJoueurModulo()+1));
-		//labelTourRestant = new JLabel("Nombre de tours restants: " + Integer.toString(dp.getAJActuel().getnbActionsMax() - dp.getAJActuel().nbActionsUtilisees()));
-		System.out.println(dp.getActionsRestantes());
-		labelTourRestant = new JLabel("Nombre de tours restants: " + dp.getActionsRestantes());
-
-		//Liste artefact
 		
-		//nb Cls:
+		labelJoueur = new JLabel("Joueur " + Integer.toString(dp.getindiceJoueurModulo()+1));
+		labelTourRestant = new JLabel("Nombre de tours restants: " + dp.getActionsRestantes());
+		
+		//Info sur la zone du joueur
 		
 		this.add(labelJoueur,BorderLayout.NORTH);
 		this.add(labelTourRestant,BorderLayout.SOUTH);

@@ -9,10 +9,10 @@ import modele.Ile.AccesHorsIle;
 
 public class Ile extends Observable {
 	/** On fixe la taille de la grille. */
-	public static final int HAUTEUR = 15, LARGEUR = 15; //20
-	//Nombre de joueur
+	public static final int HAUTEUR = 15, LARGEUR = 15; // 20
+	// Nombre de joueur
 	public static final int nbJoueur = 4;
-	//Nb artefact
+	// Nb artefact
 	public static final int nbArtefact = 4;
 	/** On stocke un tableau de zones. */
 	private Zone[][] zones;
@@ -34,10 +34,10 @@ public class Ile extends Observable {
 		}
 		this.generateur = new Random();
 		this.joueurs = new ArrayList<Joueur>();
-		
-		//Alea de l'aeroport
-		int caseAleaL = (int) Math.floor(Math.random() * (LARGEUR-1) +1);
-		int caseAleaH = (int) Math.floor(Math.random() * (HAUTEUR-1) +1);
+
+		// Alea de l'aeroport
+		int caseAleaL = (int) Math.floor(Math.random() * (LARGEUR - 1) + 1);
+		int caseAleaH = (int) Math.floor(Math.random() * (HAUTEUR - 1) + 1);
 		zones[caseAleaL][caseAleaH].setHeliport();
 		this.heli = zones[caseAleaL][caseAleaH];
 		this.heli.etat = true;
@@ -46,7 +46,7 @@ public class Ile extends Observable {
 
 	public class AccesHorsIle extends Exception {
 		public AccesHorsIle() {
-			System.out.println("Tentative d'acces a une zone hors de l'ile");
+			System.out.println("Tentative d'acces à une zone hors de l'ile");
 		}
 	}
 
@@ -84,47 +84,47 @@ public class Ile extends Observable {
 		}
 	}
 
-	//Fonction verifiant si une valeur est dans un tableau
+	// Fonction verifiant si une valeur est dans un tableau
 	public boolean verifEquals(int[] tab, int valeur) {
-		for (int i=0; i<tab.length;i++) {
+		for (int i = 0; i < tab.length; i++) {
 			if (tab[i] == valeur) {
 				return false;
 			}
 		}
 		return true;
 	}
-		
-	//Initialise tab de 0
-		public void initTab(int[] tab) {
-			for (int i=0; i<tab.length;i++) {
-				tab[i] =0;
-			}
+
+	// Initialise tab de 0
+	public void initTab(int[] tab) {
+		for (int i = 0; i < tab.length; i++) {
+			tab[i] = 0;
 		}
-		
-		//Fonction initialisant les joueurs
-		public void initJoueurs() {
-			int[] caseAleaL = new int[nbJoueur];
-			int caseAleaL2 = 0;
-			int[] caseAleaH = new int[nbJoueur];
-			int caseAleaH2 = 0;
-			initTab(caseAleaL);
-			initTab(caseAleaH);
-			for (int i=0; i < nbJoueur; i++ ) {
-				//Cas largeur
-				while(!verifEquals(caseAleaL, caseAleaL2)) {
-					caseAleaL2 = (int) Math.floor(Math.random() * (LARGEUR-1) +1);
-				}
-				//Cas hauteur
-				while(!verifEquals(caseAleaH, caseAleaH2)) {
-					caseAleaH2 = (int) Math.floor(Math.random() * (HAUTEUR-1) +1);
-				}
-				caseAleaL[i] = caseAleaL2;
-				caseAleaH[i] = caseAleaH2;
-				Joueur p = new Joueur(this, zones[caseAleaL2][caseAleaH2],i+1);
-				joueurs.add(p);
-				
+	}
+
+	// Fonction initialisant les joueurs
+	public void initJoueurs() {
+		int[] caseAleaL = new int[nbJoueur];
+		int caseAleaL2 = 0;
+		int[] caseAleaH = new int[nbJoueur];
+		int caseAleaH2 = 0;
+		initTab(caseAleaL);
+		initTab(caseAleaH);
+		for (int i = 0; i < nbJoueur; i++) {
+			// Cas largeur
+			while (!verifEquals(caseAleaL, caseAleaL2)) {
+				caseAleaL2 = (int) Math.floor(Math.random() * (LARGEUR - 1) + 1);
 			}
+			// Cas hauteur
+			while (!verifEquals(caseAleaH, caseAleaH2)) {
+				caseAleaH2 = (int) Math.floor(Math.random() * (HAUTEUR - 1) + 1);
+			}
+			caseAleaL[i] = caseAleaL2;
+			caseAleaH[i] = caseAleaH2;
+			Joueur p = new Joueur(this, zones[caseAleaL2][caseAleaH2], i + 1);
+			joueurs.add(p);
+
 		}
+	}
 
 	/**
 	 * Calcul du tour suivant
@@ -144,8 +144,8 @@ public class Ile extends Observable {
 
 		while (zoneAModif.size() < 3) {
 			Zone z = zoneNonSubmergee.get(generateur.nextInt(zoneNonSubmergee.size()));
-			//Une zone a  modifie ne doit pas l'heliport et son element soit est Neutre
-			if (!zoneAModif.contains(z) && (z.estNeutre())){
+			// Une zone a modifie ne doit pas l'heliport et son element soit est Neutre
+			if (!zoneAModif.contains(z) && (z.estNeutre())) {
 				zoneAModif.add(z);
 			}
 		}
@@ -171,7 +171,7 @@ public class Ile extends Observable {
 	public boolean assecherZone(Joueur j, Zone zV) throws AccesHorsIle {
 		if (zV.x < 1 || zV.x > LARGEUR || (zV.y < 1 || zV.y > HAUTEUR))
 			throw new AccesHorsIle();
-		
+
 		if (j.getZone().estAdjacente(zV)) {
 			if (zV.estInondee()) {
 				zV.situation = Situation.Normale;
@@ -209,9 +209,19 @@ public class Ile extends Observable {
 	public ArrayList<Joueur> getJoueurs() {
 		return this.joueurs;
 	}
-	
+
 	public Zone getHeli() {
 		return this.heli;
 	}
-}
 
+	// Retourne son numéro dans l'Arraylist.
+	public int getNbJoueur(Joueur j) {
+		int index = joueurs.indexOf(j);
+		
+		if (index==-1) {
+			System.out.println("Joueur non existant");
+			System.exit(1);
+		}
+		return index;
+	}
+}

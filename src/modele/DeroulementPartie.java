@@ -82,6 +82,17 @@ public class DeroulementPartie extends Observable implements Observer {
 		}
 		return true;
 	}
+	
+	public boolean defaite() {
+		return joueurSubmergees();
+	}
+	
+	public boolean joueurSubmergees() {
+		for(Joueur j: ile.getJoueurs()) {
+			if (j.getZone().estSubmergee()) return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void update() {

@@ -49,23 +49,25 @@ public class VueInventaire extends JPanel implements Observer {
 		for(int i=0; i < this.modele.getJoueurs().size(); i++) {
 			this.joueursList.add(new JLabel("Inventaire du joueur "+Integer.toString(i+1)));
 			this.add(joueursList.get(i));
-			this.joueursList.get(i).setBounds(cote, espacement*(i+1), size.width, size.height);
+			this.joueursList.get(i).setBounds(cote, 2*espacement*(i+1), size.width, size.height);
 		}
 		
 	}
 	
 	public void update() {
+		this.getParent().repaint();
 		repaint();
 	}
+	
 	public void paintInventaireJoueur(Graphics g, Joueur j) {
 		int nbJ = modele.getJoueurs().indexOf(j);
 		if (!j.getInventaire().isEmpty()) {
 			for (int i = 0; i < j.getInventaire().size();i++) {
 				Objet o = j.getInventaire().get(i);
-				String chemin = "res/"+o.getClass().getSimpleName()+"/"+o.getElement().toString()+".png";
+				String chemin = "res/"+o.getClass().getSimpleName()+"/"+o.getElement().name()+".png";
 				try {
 					Image img = ImageIO.read(new File(chemin));
-					g.drawImage(img,60+32*i,32+nbJ*32,this);
+					g.drawImage(img,cote+32*i,2*espacement*(nbJ+1)+espacement/2,this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -80,12 +82,6 @@ public class VueInventaire extends JPanel implements Observer {
 		}
 
 	}
-	
-	public void paint(Graphics g) {
-		super.paint(g);
-	
-	}
-	
 	
 }
 
