@@ -32,4 +32,4 @@ On avait détecté ce problème assez tôt du fait qu'on avait à ce stade, init
 Avec un peu de remaniement, nous avons pu résoudre ce problème.
 1. Nous avons déjà créer une classe abstraite *ActionJoueur* qui est implémentée par toutes les actions que nous allons implémenter. Par ailleurs, cette classe prend **un Joueur** en constructeur et pas une île comme précédement.
 2. Ensuite, nous avons créer une classe *ActionsJoueurs* (notons le s en plus) qui a en attribut toutes les actions pour un Joueur, cela permet de vérifier plus facilement si le quota d'action est atteint.
-3. Enfin, nous avons créer une classe *DéroulementPartie* qui gère la partie, le joueur actuel et ces actions. Cette classe est d'ailleurs énormément liée aux différentes vues.
+3. Enfin, nous avons créer une classe *DéroulementPartie* qui gère la partie, le joueur actuel et ses actions. Cette classe est d'ailleurs énormément liée aux différentes vues.
