@@ -1,9 +1,5 @@
 package modele;
 
-enum Situation {
-	Normale, Inondee, Submergee
-}
-
 public class Zone {
 
 	/** On conserve un pointeur vers la classe principale du modele. */
@@ -116,7 +112,7 @@ public class Zone {
 	}
 	
 	public String toString() {
-		return String.format("Zone de coordonnees x = %d y = %d \nSituation: %s \nElement: %s\n", this.x, this.y,
+		return String.format("Zone de coordonnees x = %d et y = %d %n Situation: %s %n Element: %s%n", this.x, this.y,
 				this.situation.name(), this.getElement().name());
 	}
 	
@@ -137,6 +133,10 @@ public class Zone {
 	
 	public void setHeliport() {
 		this.heliport = true;
+	}
+
+	public Situation getSituation() {
+		return this.situation;
 	}
 }
 

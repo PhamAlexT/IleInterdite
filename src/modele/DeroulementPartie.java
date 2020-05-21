@@ -100,4 +100,8 @@ public class DeroulementPartie extends Observable implements Observer {
 		this.notifyObservers();
 
 	}
+	
+	public Ile getIle() {
+		return this.ile;
+	}
 }

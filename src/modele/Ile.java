@@ -9,7 +9,7 @@ import modele.Ile.AccesHorsIle;
 
 public class Ile extends Observable {
 	/** On fixe la taille de la grille. */
-	public static final int HAUTEUR = 15, LARGEUR = 15; // 20
+	public static final int HAUTEUR = 20, LARGEUR = 20; // 20
 	// Nombre de joueur
 	public static final int nbJoueur = 4;
 	// Nb artefact
