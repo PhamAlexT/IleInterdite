@@ -1,8 +1,10 @@
 package vue;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -51,10 +53,6 @@ class VueGrille extends JPanel implements Observer {
 		super.repaint();
 		for (int i = 1; i <= Ile.LARGEUR; i++) {
 			for (int j = 1; j <= Ile.HAUTEUR; j++) {
-				/**
-				 * ... Appeler une fonction d'affichage auxiliaire. On lui fournit les
-				 * informations de dessin [g] et les coordonnees du coin en haut a gauche.
-				 */
 				try {
 					paint(g, modele.getZone(i, j), (i - 1) * TAILLE, (j - 1) * TAILLE);
 				} catch (AccesHorsIle e) {
@@ -87,7 +85,7 @@ class VueGrille extends JPanel implements Observer {
 		Color c = null;
 		switch (z.getElement()) {
 		case Air:
-			c = new Color(114, 230, 184);
+			c = new Color(114, 230, 184).brighter();
 			break;
 		case Eau:
 			c = new Color(44, 122, 225);
@@ -99,7 +97,7 @@ class VueGrille extends JPanel implements Observer {
 			c = Color.RED;
 			break;
 		default:
-			c = Color.GRAY;
+			c = Color.GRAY.brighter();
 			break;
 		}
 		return c;
@@ -110,21 +108,28 @@ class VueGrille extends JPanel implements Observer {
 			this.removeMouseListener(liaison.getAJActuel().getDeplacementJoueur());
 			this.removeMouseListener(liaison.getAJActuel().getaZ());
 		}
-		Color c = getColorFromElement(z).brighter();
-
-		if (z.estNormale()) {
-			g.setColor(c);
-		}
-
-		if (z.estInondee()) {
-			g.setColor(Color.MAGENTA);
-		}
-
-		if (z.estSubmergee()) {
-			g.setColor(Color.BLACK);
-		}
-		/** Coloration d'un rectangle. */
+		Color c = getColorFromElement(z);
+		g.setColor(c);
 		g.fillRect(x, y, TAILLE, TAILLE);
+		
+		if(z.estInondee()) {
+			try {
+				Image imgEtat = ImageIO.read(new File("res/EtatInondee.png"));
+				g.drawImage(imgEtat, (z.getX() - 1) * TAILLE, (z.getY() - 1) * TAILLE, this);
+			} catch (Exception e) {
+				
+			}
+		}
+		
+		if(z.estSubmergee()) {
+			try {
+				Image imgEtat = ImageIO.read(new File("res/EtatSubmergee.png"));
+				g.drawImage(imgEtat, (z.getX() - 1) * TAILLE, (z.getY() - 1) * TAILLE, this);
+			} catch (Exception e) {
+				
+			}
+		}
+		
 	}
 
 	public void paintJoueur(Graphics g, Joueur j) throws IOException {
