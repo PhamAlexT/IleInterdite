@@ -101,14 +101,21 @@ public class DeroulementPartie extends Observable implements Observer {
 	 **/
 	public boolean gagne() {
 		ArrayList<Joueur> listJ = ile.getJoueurs();
-		int nbArte = 0;
+		ArrayList<Object> artefact = new ArrayList<Object>();
 		for (Joueur j : listJ) {
+			//on verifie qu'il est sur l'heliport
 			if (!j.getZone().equals(ile.getHeli())) {
 				return false;
 			}
-			nbArte += j.getNbArtefacts();
+			//on parcourt ces items
+			ArrayList<Objet> items = j.getInventaire();
+			for (Object o : items) {
+				if ((o instanceof Artefact) && (!artefact.contains(o))){
+					artefact.add(o);
+				}
+			}
 		}
-		if (!(nbArte == ile.nbArtefact)) {
+		if (!(artefact.size() == ile.nbArtefact)) {
 			return false;
 		}
 		return true;

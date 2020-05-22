@@ -84,11 +84,11 @@ public class CVue extends JFrame {
     	this.frame.add(new EcranDeFin("Victoire"));
     }
     
-    //Ecran de défaite
+    //Ecran de defaite
     public void ecranDefaite() {
     	this.frame.getContentPane().removeAll();
     	this.frame.repaint();
-    	this.frame.add(new EcranDeFin("Défaite"));
+    	this.frame.add(new EcranDeFin("Defaite"));
     }
 }
 
