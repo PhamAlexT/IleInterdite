@@ -5,11 +5,26 @@ import java.util.ArrayList;
 import controleur.RamasserArtefact;
 
 public class Joueur {
+	//Attributs
+	//'ile' une ile.
+	/** On conserve un pointeur vers la classe principale du modele. */
 	private Ile ile;
+	//'z' une zone.
 	private Zone z;
+	//'items' une liste d'objets.
 	private ArrayList<Objet> items;
+	//'nbJoueur' un entier correspondant au numero du joueur.
 	private int nbJoueur;
-	
+		
+	//Constructeurs
+		
+	/**Joueur() :
+	 * 		Ile ile : une ile.
+	 * 		Zone z : une zone.
+	 * 		int n : un entier.
+	 * 		Initialise l'attribut ile avec l'ile donnee en parametre, l'attribut z avec la zone donnee en parametre initialise la liste items des 
+	 * 		objets du joueur a une liste vide.
+	 **/
 	public Joueur(Ile ile, Zone z, int n) {
 		this.ile = ile;
 		this.z = z;
@@ -17,22 +32,41 @@ public class Joueur {
 		this.items = new ArrayList<Objet>();
 	}
 	
+	//Methodes
 	
-	
+	/**void seDeplace() :
+	 * 		Zone nz : une zone.
+	 * 		Donne la valeur nz a l'attribut zone z du joueur.
+	**/
 	public void seDeplace(Zone nz) {
 			this.z = nz;
 	}
 
+	/**String toString() :
+	 * 		Return : Une chaine de caracteres correspondant au joueur et a la zone ou il se trouve.
+	**/
 	public String toString() {
 		return "--Joueur--\n" + z.toString() + "------------";
 	}
-	
+		
+	/**Ile getIle() :
+	 * 		Return : l'ile ou se trouve le joueur.
+	 **/
 	public Ile getIle() {
 		return this.ile;
 	}
+		
+	/**Ile getZone() :
+	 * 		Return : la zone ou se trouve le joueur.
+	 **/
 	public Zone getZone() {
 		return this.z;
 	}
+	
+	/**void recupererArtefact() :
+	* 		Objet truc : un objet.
+	* 		Ajoute l'objet truc a la liste items des objets du joueur.
+	 **/
 	public void recupereArtefact(Objet truc) {
 		items.add(truc);
 		if (truc instanceof Clef) {
@@ -41,7 +75,7 @@ public class Joueur {
 			//System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus" + truc.e.toString());
 		}
 	}
-	
+		
 	/**
 	//Fonction verifiant si dans la liste le joeueur possede une cle de type l'artefact qu'il veut recuperer
 	public boolean verifCle(modele.Zone.Element e) {
@@ -59,7 +93,11 @@ public class Joueur {
 		System.out.println("Le Joueur " + this.nbJoueur + " n'a pas de cle !");
 		return false;
 	}**/
-	//Fonction parcourant la liste des items et indiquant combien il y a de cles  de type e
+		
+	/**int combienCles() :
+	 * 		Element e : un element parmi un type enumere.
+	 * 		Return : le nombre de clefs de type e possedees par le joueur.
+	 **/
 	public int combienCles(Element e) {
 		//System.out.println("Element" + e.toString());
 		int nb = 0;
@@ -77,8 +115,10 @@ public class Joueur {
 		//System.out.println("Le Joueur " + this.nbJoueur + " a " + nb + " cles" );
 		return nb;
 	}
-	
-			
+		
+	/**int getNbCles() :
+	 * 		Return : le nombre de clefs que possede le joueur.
+	 **/		
 	public int getNbCles() {
 		int res = 0;
 		for (Objet o:items) {
@@ -87,6 +127,11 @@ public class Joueur {
 		}
 		return res;
 	}
+	
+	/**int getNbArtefacts() :
+	 * 
+	 * 		Return : le nombre d'artefact que possede le joueur.
+	 **/
 	public int getNbArtefacts() {
 		int res = 0;
 		for (Objet o:items) {
@@ -96,14 +141,25 @@ public class Joueur {
 		return res;
 	}
 	
+	/**int getNbObjet() :
+	 * 		Return : le nombre d'objets tous confondus que possede le joueur.
+	 **/
 	public int getNbObjet() {
 		return items.size();
 	}
-	
+		
+	/**Arraylist getInventaire() :
+		 * 		Return : l'inventaire items du joueur.
+	 **/
 	public ArrayList<Objet> getInventaire(){
 		return this.items;
 	}
-	
+		
+	/**void enleveCles() :
+	 * 		Clef c : une clef.
+	 * 		int combien : un entier.
+	 * 		Retire un nombre correspondant au parametre combien de clefs correspondant  a un type de clef de l'inventaire items du joueur.
+	 **/
 	public void enleveCles(Clef c, int combien) {
 		int nb = 0;
 		for (int i = 0; i < this.items.size(); i++) {
@@ -118,7 +174,11 @@ public class Joueur {
 			}
 		}
 	}
-	
+		
+	/**void enleveArtefact() :
+	 * 		Artefact a : un artefact.
+	 * 		Retire un artefact a de l'inventaire items du joueur.
+	 **/
 	public void enleveArtefact(Artefact a) {
 		for (int i = 0; i < this.items.size(); i++) {
 			if (this.items.get(i) instanceof Artefact) {
@@ -129,5 +189,4 @@ public class Joueur {
 		}
 	}
 }
-
 

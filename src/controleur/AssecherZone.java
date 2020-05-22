@@ -13,14 +13,27 @@ import modele.Zone;
 import modele.Ile.AccesHorsIle;
 
 public class AssecherZone extends ActionJoueur implements MouseListener {
-	int TAILLE;
+	//Attributs
+	//'TAILLE' un entier correspondant a la taille de la zone.
+	//int TAILLE;
+	//'ile' une ile.
 	Ile ile;
 
+	//Constructeur
+	/**AssecherZone() :
+	* Joueur j : un joueur.
+	* Definit j comme etant le joueur concerne par l'action d'assecher une zone et initialise l'attribut ile a l'ile de j.
+	**/
 	public AssecherZone(Joueur j) {
 		super(j);
 		this.ile = j.getIle();
 	}
 
+	//Methodes
+	/**void mouseClicked() :
+	 * MouseEvent argo : un evenement lie a l'utilisation d'une souris.
+	 * Asseche une zone proche du joueur si un clique-droit est effectue sur cette zone.
+	 **/
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		if (SwingUtilities.isRightMouseButton(arg0)) {

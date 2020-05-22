@@ -8,19 +8,28 @@ import autres.Observable;
 import modele.Ile.AccesHorsIle;
 
 public class Ile extends Observable {
-	/** On fixe la taille de la grille. */
+	//Attributs
+	
+	//'HAUTEUR' un entier correspondant a la hauteur de la grille et 'LARGEUR' un entier correspondant a la largeur de la grille.
 	public static final int HAUTEUR = 15, LARGEUR = 15; // 20
-	// Nombre de joueur
+	//'nbJoueur' un entier representant le nombre de joueurs de la partie.
 	public static final int nbJoueur = 4;
-	// Nb artefact
+	//'nbArtefact' un entier representant le nombre d'artefact de la partie.
 	public static final int nbArtefact = 4;
-	/** On stocke un tableau de zones. */
+	//'zones' un tableau stockant des zones correspondant aux zones de l'ile.
 	private Zone[][] zones;
+	//'generateur' un generateur d'entiers aleatoires.
 	private Random generateur;
+	//'heli' une zone speciale correspondant a l'heliport.
 	private Zone heli;
+	//'joueurs' une liste de joueurs contenant les joueurs de la partie.
 	private ArrayList<Joueur> joueurs;
 
-	/** Construction : on initialise un tableau de zones. */
+	//Constructeur
+	/**Ile() :
+	 * 		Creer tout d'abord un tableau de zone vide correspondant a l'attribut zones de l'ile puis creer une liste vide de joueurs.
+	 * 		On place ensuite l'heliport et on initialise la liste des joueurs et des zones.
+	 **/
 	public Ile() {
 		/**
 		 * Pour eviter les problemes aux bords, on ajoute une ligne et une colonne de
@@ -45,12 +54,18 @@ public class Ile extends Observable {
 	}
 
 	public class AccesHorsIle extends Exception {
+		
+		//Constructeur
+		/**AccesHorsIle() :
+		 * 		Affiche un message si le joueur essaye d'acceder a une zone hors de l'ile.
+		 **/
 		public AccesHorsIle() {
-			System.out.println("Tentative d'acces à une zone hors de l'ile");
+			System.out.println("Tentative d'acces a une zone hors de l'ile");
 		}
 	}
-
-	/**
+	//Methodes
+	
+	/**void init() :
 	 * Initialisation aleatoire des zones, exceptees celle des bords qui ont ete
 	 * ajoutes.
 	 */
@@ -59,6 +74,9 @@ public class Ile extends Observable {
 		initJoueurs();
 	}
 
+	/**void initCellules() :
+	 * 		Initialise aleatoirement les zones exceptees les zones des bords qui sont des surplus.
+	 **/
 	public void initCellules() {
 		ArrayList<int[]> casesSpe = new ArrayList<int[]>();
 		while (casesSpe.size() < 4) {
@@ -84,7 +102,11 @@ public class Ile extends Observable {
 		}
 	}
 
-	// Fonction verifiant si une valeur est dans un tableau
+	/**boolean verifEquals() :
+	 * 		int[] tab : un tableau d'entiers.
+	 * 		int valeur : un entier.
+	 * 		Return : True si valeur se trouve dans tab[], false sinon.
+	 **/
 	public boolean verifEquals(int[] tab, int valeur) {
 		for (int i = 0; i < tab.length; i++) {
 			if (tab[i] == valeur) {
@@ -94,14 +116,21 @@ public class Ile extends Observable {
 		return true;
 	}
 
-	// Initialise tab de 0
+	/**void initTab() :
+	 * 		int[] tab : un tableau d'entiers.
+	 * 		Initialise ou mets toutes les valeurs du tableau tab a 0.
+	 **/
 	public void initTab(int[] tab) {
 		for (int i = 0; i < tab.length; i++) {
 			tab[i] = 0;
 		}
 	}
 
-	// Fonction initialisant les joueurs
+	/**void initJoueurs() :
+      *Initialise les joueurs de la partie, 
+      * les places de maniere aleatoire sur la carte 
+      * et les ajoute a la liste de joueurs de la partie
+	 **/
 	public void initJoueurs() {
 		int[] caseAleaL = new int[nbJoueur];
 		int caseAleaL2 = 0;
@@ -126,7 +155,7 @@ public class Ile extends Observable {
 		}
 	}
 
-	/**
+	/**void avance() :
 	 * Calcul du tour suivant
 	 */
 	public void avance() {
@@ -156,6 +185,12 @@ public class Ile extends Observable {
 		notifyObservers();
 	}
 
+	/**boolean deplacementJoueur() :
+	 * 		Joueur j : un joueur.
+	 * 		Zone nZ : une zone.
+	 * 		Deplace un joueur j dans les limites des dimensions de l'ile dans une zone nZ si elle est proche
+	 * 		Return : True si le joueur a pu etre deplace, false sinon.
+	 **/
 	public boolean deplacementJoueur(Joueur j, Zone nZ) throws AccesHorsIle {
 		if (nZ.x < 1 || nZ.x > LARGEUR || (nZ.y < 1 || nZ.y > HAUTEUR))
 			throw new AccesHorsIle();
@@ -168,6 +203,12 @@ public class Ile extends Observable {
 		return false;
 	}
 
+	/**boolean assecherZone() :
+	 * 		Joueur j : un joueur.
+	 * 		Zone zV : une zone.
+	 * 		Asseche une zone zV dans les limites des dimensions de l'ile si elle est proche du joueur j effectuant l'action
+	 * 		Return : True si la zone a pu etre assechee, false sinon.
+	 **/
 	public boolean assecherZone(Joueur j, Zone zV) throws AccesHorsIle {
 		if (zV.x < 1 || zV.x > LARGEUR || (zV.y < 1 || zV.y > HAUTEUR))
 			throw new AccesHorsIle();
@@ -184,15 +225,19 @@ public class Ile extends Observable {
 
 	}
 
+	/**void recupererArtefact() :
+	 * 		Joueur j : un joueur.
+	 * 		Permet au joueur j de recuperer un artefact.
+	 **/
 	public void recupererArtefact(Joueur j) {
 		j.recupereArtefact(null);
 		notifyObservers();
 	}
 
-	/**
-	 * Une methode pour renvoyer la zone aux coordonnees choisies (sera utilisee par
-	 * la vue).
-	 * 
+	/**Zone getZone() :
+	 * 		int x : un entier formant une coordonnee avec un autre entier.
+	 * 		int y : un entier formant une coordonnee avec un autre entier.
+	 * 		Return : la zone presente aux coordonnees choisies si elle n'est pas hors de l'ile. 
 	 * @throws AccesHorsIle
 	 */
 	public Zone getZone(int x, int y) throws AccesHorsIle {
@@ -201,23 +246,35 @@ public class Ile extends Observable {
 		return zones[x][y];
 	}
 
+	/**String toString() :
+	 * 		Return : Une chaine de caracteres correspondant aux informations de l'ile fournies par certains attributs.
+	 **/
 	public String toString() {
 		return String.format("Infos Iles: \nHauteur: %d\nLargeur: %d%nNombre de joueurs: %d", HAUTEUR, LARGEUR,
 				this.joueurs.size());
 	}
 
+	/**ArrayList getJoueurs() :
+	 * 		Return : la liste des joueurs de la partie.
+	 **/
 	public ArrayList<Joueur> getJoueurs() {
 		return this.joueurs;
 	}
 
+	/**Zone getHeli() :
+	 * 		Return : la zone presentant l'heliport.
+	 **/
 	public Zone getHeli() {
 		return this.heli;
 	}
 
-	// Retourne son numero dans l'Arraylist.
+	/**int getNbJoueur() :
+	 * 		Joueur j : un joueur.
+	 * 
+	 * 		Return : l'index du joueur j dans la lisre des joueurs de la partie.
+	 **/
 	public int getNbJoueur(Joueur j) {
 		int index = joueurs.indexOf(j);
-		
 		if (index==-1) {
 			System.out.println("Joueur non existant");
 			System.exit(1);

@@ -10,11 +10,11 @@ import vue.CVue;
 public class IleInterdite {
     public static void main(String[] args) {
 	/**
-	 * Pour les besoins du jour on consid�re la ligne EvenQueue... comme une
+	 * Pour les besoins du jour on considere la ligne EvenQueue... comme une
 	 * incantation qu'on pourra expliquer plus tard.
 	 */
 	EventQueue.invokeLater(() -> {
-		/** Voici le contenu qui nous int�resse. */
+		/** Voici le contenu qui nous interesse. */
                 Ile modele = new Ile();
                 DeroulementPartie dp = new DeroulementPartie(modele);
                 

@@ -9,14 +9,26 @@ import controleur.ActionsJoueurs;
 
 public class DeroulementPartie extends Observable implements Observer {
 
+	//Attributs
+	
+	//'rand' un generateur d'entiers aleatoires.
 	Random rand = new Random();
-
+	//'ile' une ile.
+	/** On conserve un pointeur vers la classe principale du modele. */
 	private Ile ile;
+	//'j' un joueur.
 	private Joueur j;
+	//'ajActuel' les actions du joueur actuellement en action.
 	private ActionsJoueurs ajActuel;
+	//'indiceJoueur' un entier correspondant a l'indice du joueur actuellement en action.
 	private int indiceJoueur;
+	//'actionsRestantes' un entier correpondant au nombre d'actions restantes du joueur en action.
 	private int actionsRestantes;
-
+	/**DeroulementPartie() :
+	 * 		Ile ile : une ile.
+	 * 		Definit ile comme etant l'attribut ile de la partie. initialise indiceJoueur a 0 pour definir le premier joueur de la liste comme etant le joueur
+	 * 		en action, accorde a ce joueur des actions ajActuels et un nombre d'action restante actionsRestantes et ajoute ses actions a la liste des observateurs.
+	 **/
 	public DeroulementPartie(Ile ile) {
 		this.ile = ile;
 		indiceJoueur = 0;
@@ -26,6 +38,10 @@ public class DeroulementPartie extends Observable implements Observer {
 		ajActuel.addObserver(this);
 	}
 
+	//Methodes
+	/**void prochainJoueur() :
+	 * 		Fait passer le joueur actuel au joueur suivant.
+	**/
 	public void prochainJoueur() {
 		indiceJoueur++;
 		j = ile.getJoueurs().get(indiceJoueur % ile.getJoueurs().size());
@@ -35,24 +51,40 @@ public class DeroulementPartie extends Observable implements Observer {
 		this.notifyObservers();
 	}
 
+	/**ActionsJoueurs getAJActuel() :
+	 * 		Return : les actions du joueur actuel.
+	 **/
 	public ActionsJoueurs getAJActuel() {
 		return ajActuel;
 	}
 
+	/**int getindiceJoueurModulo() :
+	 * 		Return : l'indice du joueur actuel modulo la taille de la liste de joueurs.
+	 **/
 	public int getindiceJoueurModulo() {
 		return indiceJoueur % ile.getJoueurs().size();
 	}
 
+	/**int getActionsRestantes() :
+	 * 		Return : le nombre d'actions restantes a effectuer par le joueur actuel.
+	 **/
 	public int getActionsRestantes() {
 		// System.out.println(ajActuel.getnbActionsMax() -
 		// ajActuel.nbActionsUtilisees());
 		return ajActuel.getnbActionsMax() - ajActuel.nbActionsUtilisees();
 	}
 
+	/**Joueur getJoueur() :
+	 * 		Return : le joueur actuel.
+	 **/
 	public Joueur getJoueur() {
 		return this.j;
 	}
 
+	/**void giveAleaClefs() :
+	 * 		Donne une clef d'un element aleatoire ou rien a un joueur de maniere aleatoire. Le joueur a 20% de chance de recevoir
+	 * 		une clef (utilisee a la fin de chaque tour).
+	 **/
 	public void giveAleaClefs() {
 		int chance = rand.nextInt(100);
 		if (0 <= chance && chance < 20) {
@@ -65,28 +97,34 @@ public class DeroulementPartie extends Observable implements Observer {
 		}
 	}
 
-	// Fonction verifiant si la partie est gagne
+	/**boolean gagne() :
+	 * 		Return : True si les conditions d'une victoire sont reunies, false sinon.
+	 **/
 	public boolean gagne() {
 		ArrayList<Joueur> listJ = ile.getJoueurs();
 		int nbArte = 0;
 		for (Joueur j : listJ) {
 			if (!j.getZone().equals(ile.getHeli())) {
-				// System.out.println("Pas tous a l'helico");
 				return false;
 			}
 			nbArte += j.getNbArtefacts();
 		}
 		if (!(nbArte == ile.nbArtefact)) {
-			// System.out.println("Pas tous les artefacts");
 			return false;
 		}
 		return true;
 	}
 	
+	/**boolean defaite() :
+	 * 		Return : True si les conditions d'une defaite sont reunies, false sinon.
+	 **/
 	public boolean defaite() {
 		return joueurSubmergees();
 	}
 	
+	/**boolean joueurSubmergees() :
+	 * 		Return : True si au moins un joueur est sur une zone submergee, false sinon.
+	 **/
 	public boolean joueurSubmergees() {
 		for(Joueur j: ile.getJoueurs()) {
 			if (j.getZone().estSubmergee()) return true;
@@ -101,6 +139,9 @@ public class DeroulementPartie extends Observable implements Observer {
 
 	}
 	
+	/**Ile getIle() :
+	 * 		Return : l'ile concerne par la partie.
+	 **/
 	public Ile getIle() {
 		return this.ile;
 	}
