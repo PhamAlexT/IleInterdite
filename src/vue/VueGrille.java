@@ -97,7 +97,7 @@ class VueGrille extends JPanel implements Observer {
 	/** Une fonction utile pour la fonction paint */
 	/**Color getColorFromElement() :
 	 * 		Zone z : une zone.
-	 * 		Return : la couleur a associer a chaque element d'un type enumere.
+	 * 		Return : la couleur a associer a chaque element
 	 **/
 	private Color getColorFromElement(Zone z) {
 		Color c = null;
@@ -124,9 +124,8 @@ class VueGrille extends JPanel implements Observer {
 	/**void paint() :
 	 * 		Graphics g : un graphique.
 	 * 		Zone z : une zone.
-	 * 		int x : un entier correspondant a un morceau de coordonnee.
-	 * 		int y : un entier correspondant a un morceau de coordonnee.
-	 * 
+	 * 		int x : un entier correspondant à des coordonnées dans la grille (pixel)
+	 * 		int y : un entier correspondant à des coordonnées dans la grille (pixel)
 	 * 		Paint les zones de la grille. Leur couleur ainsi que leur situation.
 	 **/
 	private void paint(Graphics g, Zone z, int x, int y) {
@@ -162,14 +161,14 @@ class VueGrille extends JPanel implements Observer {
 	 * 		Paint les joueurs de la partie.
 	 **/
 	public void paintJoueur(Graphics g, Joueur j) throws IOException {
-		Image imgJoueur = ImageIO.read(new File("res/Player" + Integer.toString(modele.getJoueurs().indexOf(j)+1) + ".png"));
+		Image imgJoueur = ImageIO.read(new File("res/Player" + Integer.toString(modele.getNbJoueur(j)+1) + ".png"));
 		g.drawImage(imgJoueur, (j.getZone().getX() - 1) * TAILLE, (j.getZone().getY() - 1) * TAILLE, this);
 	}
 	
 	/**void paintHeliport() :
 	 * 		Graphics g : un graphique.
 	 * 		Zone z : une zone.
-	 * 		Paint les joueurs de la partie.
+	 * 		Paint l'héliport
 	 **/
 	public void paintHeliport(Graphics g, Zone z) throws IOException {
 		Image imgHeliport = ImageIO.read(new File("res/heliport.png"));

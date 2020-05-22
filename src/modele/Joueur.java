@@ -166,10 +166,6 @@ public class Joueur {
 					nb ++;
 				}
 			}
-			if (nb == combien) {
-				System.out.println("sfhdsugbkjhgbvesdfljvriglknv, " + nb);
-				return;
-			}
 		}
 	}
 		
