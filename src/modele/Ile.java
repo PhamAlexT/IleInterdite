@@ -81,7 +81,8 @@ public class Ile extends Observable {
 		ArrayList<int[]> casesSpe = new ArrayList<int[]>();
 		while (casesSpe.size() < 4) {
 			int[] c = { generateur.nextInt(LARGEUR) + 1, generateur.nextInt(HAUTEUR) + 1 };
-			if (!casesSpe.contains((int[]) c))
+			//on verifie que la case n'est pas deja dans l'arrayList et que l'abscisse est differente de celle de l'heli aisni que l'heliport
+			if ((!casesSpe.contains((int[]) c)) && (c[0] != this.heli.x) && (c[1] != this.heli.y))
 				casesSpe.add(c);
 		}
 

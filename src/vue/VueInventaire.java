@@ -65,7 +65,7 @@ public class VueInventaire extends JPanel implements Observer {
 		this.labelInventaire.setBounds(WIDTH/2, HEIGHT/20, size.width, size.height);
 		this.labelInventaire.setVisible(true);
 		marge = this.labelInventaire.getPreferredSize().width + WIDTH / 20;
-		
+
 		//Definition des titres pour chaque inventaire des joueurs.
 		this.joueursList = new ArrayList<JLabel>();
 		for(int i=0; i < this.modele.getJoueurs().size(); i++) {

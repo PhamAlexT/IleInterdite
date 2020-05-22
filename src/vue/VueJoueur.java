@@ -57,7 +57,7 @@ public class VueJoueur extends JPanel implements Observer  {
 		labelTourRestant.setPreferredSize(new Dimension(WIDTH,HEIGHT/8 ));
 		
 		//Info sur la zone du joueur
-		labelCoordZone = new JLabel("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnée = " + dp.getJoueur().getZone().getY());
+		labelCoordZone = new JLabel("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnee = " + dp.getJoueur().getZone().getY());
 		labelCoordZone.setPreferredSize(new Dimension(WIDTH,HEIGHT/8));
 		
 		labelSituationZone = new JLabel("Situation : " + dp.getJoueur().getZone().getSituation().name()); 
@@ -83,12 +83,12 @@ public class VueJoueur extends JPanel implements Observer  {
 	/**void paint() :
 	 * 		Paint sur l'interface la joueur en train de jouer, les actions qui lui restent, les coordonnees de la zone ou
 	 * 		il se trouve, la situation de la zone ou il se trouve ainsi que l'element de la zone ou il se trouve.
-	 * 		Rafraîchit les informations affichés à l'écran.
+	 * 		Rafraichit les informations affiches à l'ecran.
 	 **/
 	public void paint() {
 		labelJoueur.setText("Joueur " + Integer.toString(dp.getindiceJoueurModulo()+1));
 		labelTourRestant.setText("Nombre de tours restants: " + dp.getActionsRestantes());
-		labelCoordZone.setText("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnée = " + dp.getJoueur().getZone().getY());
+		labelCoordZone.setText("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnee = " + dp.getJoueur().getZone().getY());
 		labelSituationZone.setText("Situation : " + dp.getJoueur().getZone().getSituation().name());
 		labelElementZone.setText("Element: "+this.dp.getJoueur().getZone().getElement().name());
 	}	
