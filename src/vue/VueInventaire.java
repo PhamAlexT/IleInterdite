@@ -24,9 +24,9 @@ public class VueInventaire extends JPanel implements Observer {
 	Ile modele;
 	private JLabel labelInventaire;
 	private ArrayList<JLabel> joueursList;
-	private final int WIDTH = 50 * modele.HAUTEUR;
-    private final int HEIGHT = 40 * modele.LARGEUR;
-	private final int cote = modele.LARGEUR*4;
+	private final int WIDTH = 20 * modele.HAUTEUR; //50
+    private final int HEIGHT = 10 * modele.LARGEUR;  //40
+	private final int cote = modele.LARGEUR*4; //4
 	private final int espacement = cote/2;
 	private static int marge; 
 
@@ -39,7 +39,7 @@ public class VueInventaire extends JPanel implements Observer {
 		this.modele.addObserver(this);
 		
 		this.labelInventaire = new JLabel("Inventaires des joueurs");
-		this.add(labelInventaire);
+		//this.add(labelInventaire);
 		Dimension size = this.labelInventaire.getPreferredSize();
 		this.labelInventaire.setBounds(WIDTH/2, HEIGHT/20, size.width, size.height);
 		this.labelInventaire.setVisible(true);

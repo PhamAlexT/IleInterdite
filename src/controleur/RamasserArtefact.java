@@ -1,6 +1,7 @@
 package controleur;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import modele.Artefact;
 import modele.Clef;
