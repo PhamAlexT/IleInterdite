@@ -34,7 +34,9 @@ class VueCommandes extends JPanel implements Observer {
 	private RamasserArtefact ra;
 	//'ea' la capacite d'echanger des clefs.
 	private EchangeClefs ea;
-
+	
+	//
+	private CVue cv;
 	//Constructeur
 	
 	/**VueCommandes() :
@@ -59,13 +61,20 @@ class VueCommandes extends JPanel implements Observer {
 			modele.avance();
 			liaison.giveAleaClefs();
 			vj.update();
-
+			
 			if (this.liaison.gagne()) {
 				System.out.println(" La partie est gagne !");
+				cv.ecranVictoire();
+			}
+			
+			if (this.liaison.defaite()) {
+				System.out.println(" La partie est perdue !");
+				cv.ecranDefaite();
 			}
 		});
 
-		JButton recupArte = new JButton("Recuperer un artefact");			recupArte.addActionListener(e -> {
+		JButton recupArte = new JButton("Recuperer un artefact");
+		recupArte.addActionListener(e -> {
 				if (liaison.getAJActuel().estLibre()) {
 				ra.donnerArtefact(liaison.getJoueur());
 			}
@@ -102,5 +111,9 @@ class VueCommandes extends JPanel implements Observer {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+	}
+	
+	public void setVue(CVue cv) {
+		this.cv = cv;
 	}
 }

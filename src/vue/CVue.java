@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import modele.DeroulementPartie;
 import modele.Ile;
@@ -55,6 +56,7 @@ public class CVue extends JFrame {
 	grille = new VueGrille(modele,dp);
 	this.frame.add(grille);
 	commandes = new VueCommandes(modele,dp);
+	commandes.setVue(this);
 	this.frame.add(commandes,BorderLayout.SOUTH);
 	commandes.setGrille(grille);
 	
@@ -73,7 +75,21 @@ public class CVue extends JFrame {
 	this.frame.pack();
 	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.frame.setVisible(true);
-    }    
+    }
+    
+    //Ecran de victoire
+    public void ecranVictoire() {
+    	this.frame.getContentPane().removeAll();
+    	this.frame.repaint();
+    	this.frame.add(new EcranDeFin("Victoire"));
+    }
+    
+    //Ecran de défaite
+    public void ecranDefaite() {
+    	this.frame.getContentPane().removeAll();
+    	this.frame.repaint();
+    	this.frame.add(new EcranDeFin("Défaite"));
+    }
 }
 
 

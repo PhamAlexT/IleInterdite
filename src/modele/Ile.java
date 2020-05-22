@@ -272,6 +272,8 @@ public class Ile extends Observable {
 	 * 		Joueur j : un joueur.
 	 * 
 	 * 		Return : l'index du joueur j dans la lisre des joueurs de la partie.
+	 * 		
+	 * 		Notes: Nous avons ici choisi de ne pas créer d'exception et la renvoyer ici lié aux Joueurs contrairement aux zones
 	 **/
 	public int getNbJoueur(Joueur j) {
 		int index = joueurs.indexOf(j);

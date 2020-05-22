@@ -19,7 +19,7 @@ public class Clef extends Objet {
 	
 	//Methodes
 	/**Clef aleaClefs() :
-	 * 		Return : une clef possedant un element definit de maniere aleatoire.
+	 * 		Return : une clef possedant un element aléatoire
 	 **/
 	public static Clef aleaClefs() {
 		//L'element neutre est exclu.

@@ -25,15 +25,12 @@ public class VueJoueur extends JPanel implements Observer  {
     private final int HEIGHT = 8 * modele.LARGEUR;
   //'liaison' une partie.
 	DeroulementPartie dp;
-	//'labelJoueur' un JLabel.
-	JLabel labelJoueur;
-	//'labelTourRestant' un JLabel.
+	
+	JLabel labelJoueur; //  Afficher les informations du joueur
 	JLabel labelTourRestant;
-	//'labelCoordZone' un JLabel.
+	// Afficher les informations de la zone actuel du joueur
 	JLabel labelCoordZone;
-	//'labelSituationZone' un JLabel.
 	JLabel labelSituationZone;
-	//'labelElementZone' un JLabel.
 	JLabel labelElementZone;
 	
 	//Constructeur
@@ -60,7 +57,7 @@ public class VueJoueur extends JPanel implements Observer  {
 		labelTourRestant.setPreferredSize(new Dimension(WIDTH,HEIGHT/8 ));
 		
 		//Info sur la zone du joueur
-		labelCoordZone = new JLabel("x = " +dp.getJoueur().getZone().getX() + " y = " + dp.getJoueur().getZone().getY());
+		labelCoordZone = new JLabel("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnée = " + dp.getJoueur().getZone().getY());
 		labelCoordZone.setPreferredSize(new Dimension(WIDTH,HEIGHT/8));
 		
 		labelSituationZone = new JLabel("Situation : " + dp.getJoueur().getZone().getSituation().name()); 
@@ -84,14 +81,15 @@ public class VueJoueur extends JPanel implements Observer  {
 	}
 	
 	/**void paint() :
-	 * 		Paint sur l'interface la joueur en train de joueur, les actions qui lui restent, les coordonnees de la zone ou
+	 * 		Paint sur l'interface la joueur en train de jouer, les actions qui lui restent, les coordonnees de la zone ou
 	 * 		il se trouve, la situation de la zone ou il se trouve ainsi que l'element de la zone ou il se trouve.
+	 * 		Rafraîchit les informations affichés à l'écran.
 	 **/
 	public void paint() {
 		labelJoueur.setText("Joueur " + Integer.toString(dp.getindiceJoueurModulo()+1));
 		labelTourRestant.setText("Nombre de tours restants: " + dp.getActionsRestantes());
-		labelCoordZone.setText("x = " +dp.getJoueur().getZone().getX() + "y = " + dp.getJoueur().getZone().getY());
-		labelSituationZone.setText("Situation : " + dp.getJoueur().getZone().getSituation().name() + "\n test");
+		labelCoordZone.setText("Abscisse = " +dp.getJoueur().getZone().getX() + " Ordonnée = " + dp.getJoueur().getZone().getY());
+		labelSituationZone.setText("Situation : " + dp.getJoueur().getZone().getSituation().name());
 		labelElementZone.setText("Element: "+this.dp.getJoueur().getZone().getElement().name());
 	}	
 }
