@@ -149,7 +149,7 @@ public class Ile extends Observable {
 			}
 			caseAleaL[i] = caseAleaL2;
 			caseAleaH[i] = caseAleaH2;
-			Joueur p = new Joueur(this, zones[caseAleaL2][caseAleaH2], i + 1);
+			Joueur p = new Joueur(this, zones[caseAleaL2][caseAleaH2]);
 			joueurs.add(p);
 
 		}

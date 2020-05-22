@@ -13,9 +13,7 @@ public class Joueur {
 	private Zone z;
 	//'items' une liste d'objets.
 	private ArrayList<Objet> items;
-	//'nbJoueur' un entier correspondant au numero du joueur.
-	private int nbJoueur;
-		
+			
 	//Constructeurs
 		
 	/**Joueur() :
@@ -25,10 +23,9 @@ public class Joueur {
 	 * 		Initialise l'attribut ile avec l'ile donnee en parametre, l'attribut z avec la zone donnee en parametre initialise la liste items des 
 	 * 		objets du joueur a une liste vide.
 	 **/
-	public Joueur(Ile ile, Zone z, int n) {
+	public Joueur(Ile ile, Zone z) {
 		this.ile = ile;
 		this.z = z;
-		//this.nbJoueur = n;
 		this.items = new ArrayList<Objet>();
 	}
 	
@@ -170,6 +167,7 @@ public class Joueur {
 				}
 			}
 			if (nb == combien) {
+				System.out.println("sfhdsugbkjhgbvesdfljvriglknv, " + nb);
 				return;
 			}
 		}
