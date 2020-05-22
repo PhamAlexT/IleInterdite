@@ -230,7 +230,7 @@ public class Ile extends Observable {
 	 * 		Permet au joueur j de recuperer un artefact.
 	 **/
 	public void recupererArtefact(Joueur j) {
-		j.recupereArtefact(null);
+		j.recupereObjet(null);
 		notifyObservers();
 	}
 

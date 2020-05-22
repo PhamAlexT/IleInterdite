@@ -60,36 +60,13 @@ public class Joueur {
 		return this.z;
 	}
 	
-	/**void recupererArtefact() :
-	* 		Objet truc : un objet.
-	* 		Ajoute l'objet truc a la liste items des objets du joueur.
+	/**void recupereObjet() :
+	* 		Objet o : un objet.
+	* 		Ajoute l'objet o a la liste items des objets du joueur.
 	 **/
-	public void recupereArtefact(Objet truc) {
-		items.add(truc);
-		if (truc instanceof Clef) {
-			//System.out.println("Le Joueur " + this.nbJoueur + " a une cle en plus" + truc.e.toString());
-		} else {
-			//System.out.println("Le Joueur " + this.nbJoueur + " a un artefact en plus" + truc.e.toString());
-		}
+	public void recupereObjet(Objet o) {
+		items.add(o);
 	}
-		
-	/**
-	//Fonction verifiant si dans la liste le joeueur possede une cle de type l'artefact qu'il veut recuperer
-	public boolean verifCle(modele.Zone.Element e) {
-		for (int i = 0; i < this.items.size(); i++) {
-			Object obj = this.items.get(i);	
-			if (obj instanceof Clefs) {
-				if (e.equals(((Clefs) obj).getElement())) {
-					System.out.println("Le Joueur " + this.nbJoueur + " a bien une cle !");
-					this.enleveCles((Clefs) obj);
-					System.out.println("La cle pour ramasser cet artefact a etait utilise ");
-					return true;
-				}
-			}
-		}
-		System.out.println("Le Joueur " + this.nbJoueur + " n'a pas de cle !");
-		return false;
-	}**/
 		
 	/**int combienCles() :
 	 * 		Element e : un element parmi un type enumere.

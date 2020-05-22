@@ -44,7 +44,7 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 						int alea = rand.nextInt(j.getInventaire().size());
 						if (j.getInventaire().get(alea) instanceof Clef) {
 							Clef c = (Clef) j.getInventaire().get(alea);
-							j2.recupereArtefact(c);
+							j2.recupereObjet(c);
 							j.enleveCles(c, 1);
 							this.incrNbAction();
 							echangeRealise = true;

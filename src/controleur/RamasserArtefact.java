@@ -36,7 +36,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener {
 			System.out.println("Cette zone ne contient pas d'artefact !");
 		}
 		if (this.clefsMinimum <= j.combienCles(z.getElement())) {
-			j.recupereArtefact(new Artefact(z.getElement()));
+			j.recupereObjet(new Artefact(z.getElement()));
 			j.enleveCles(new Clef(z.getElement()), clefsMinimum);
 			
 			this.notifyObservers();

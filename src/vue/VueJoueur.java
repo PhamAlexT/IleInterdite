@@ -46,7 +46,7 @@ public class VueJoueur extends JPanel implements Observer  {
 		
 		// Reglage de la vue
 		Dimension dim = new Dimension(WIDTH, HEIGHT);
-		System.out.println(dim);
+
 		this.setPreferredSize(dim);
 		
 		// Reglage de la vue du joueur

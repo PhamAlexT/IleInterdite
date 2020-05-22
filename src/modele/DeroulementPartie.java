@@ -87,11 +87,10 @@ public class DeroulementPartie extends Observable implements Observer {
 	 **/
 	public void giveAleaClefs() {
 		int chance = rand.nextInt(100);
-		if (0 <= chance && chance < 80) {
+		if (0 <= chance && chance < 20) {
 			Joueur JoueurA = getJoueur();
 			Clef cAlea = Clef.aleaClefs();
-			JoueurA.recupereArtefact(cAlea);
-			System.out.println("Ce joueur recoit une clef " + cAlea.e.toString());
+			JoueurA.recupereObjet(cAlea);
 			this.notifyObservers();
 			ile.notifyObservers();
 		}
