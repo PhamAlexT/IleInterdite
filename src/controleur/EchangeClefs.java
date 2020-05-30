@@ -48,6 +48,7 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 							j.enleveCles(c, 1);
 							this.incrNbAction();
 							this.notifyObservers();
+							j.getIle().notifyObservers();
 							echangeRealise = true;
 						}
 					}
