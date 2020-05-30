@@ -38,7 +38,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener {
 		if (this.clefsMinimum <= j.combienCles(z.getElement())) {
 			j.recupereObjet(new Artefact(z.getElement()));
 			j.enleveCles(new Clef(z.getElement()), clefsMinimum);
-			
+			this.incrNbAction();
 			this.notifyObservers();
 			j.getIle().notifyObservers(); // Pour l'affichage d'inventaire.
 		}

@@ -3,11 +3,15 @@ package vue;
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modele.DeroulementPartie;
@@ -81,14 +85,23 @@ public class CVue extends JFrame {
     public void ecranVictoire() {
     	this.frame.getContentPane().removeAll();
     	this.frame.repaint();
-    	this.frame.add(new EcranDeFin("Victoire"));
+    	//this.frame.add(new EcranDeFin("Victoire"));
+    	ImageIcon icone = new ImageIcon("res/feuxArtifices.gif");
+    	JLabel image = new JLabel(icone);
+    	this.frame.add(image);
+    	this.frame.setVisible(true);
     }
     
     //Ecran de defaite
-    public void ecranDefaite() {
+    public void ecranDefaite() throws IOException {
     	this.frame.getContentPane().removeAll();
     	this.frame.repaint();
-    	this.frame.add(new EcranDeFin("Defaite"));
+    	//this.frame.add(new EcranDeFin("Defaite"));
+    	ImageIcon icone = new ImageIcon("res/defaite.gif");
+    	JLabel image = new JLabel(icone);
+    	this.frame.add(image);
+    	this.frame.setVisible(true);
+    	
     }
 }
 

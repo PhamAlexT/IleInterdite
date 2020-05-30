@@ -15,6 +15,6 @@ public class EcranDeFin extends JPanel {
 
 		msg.setFont(new Font("Serif", Font.PLAIN, 50));
 
-		this.add(msg,BorderLayout.CENTER);
+		this.add(msg,BorderLayout.PAGE_START);
 	}
 }

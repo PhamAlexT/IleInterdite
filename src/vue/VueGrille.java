@@ -174,6 +174,7 @@ class VueGrille extends JPanel implements Observer {
 		Image imgHeliport = ImageIO.read(new File("res/heliport.png"));
 		g.drawImage(imgHeliport, (z.getX() - 1) * TAILLE, (z.getY() - 1) * TAILLE, this);
 	}
+	
 }
 
 

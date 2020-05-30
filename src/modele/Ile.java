@@ -13,7 +13,7 @@ public class Ile extends Observable {
 	//'HAUTEUR' un entier correspondant a la hauteur de la grille et 'LARGEUR' un entier correspondant a la largeur de la grille.
 	public static final int HAUTEUR = 15, LARGEUR = 15; // 20
 	//'nbJoueur' un entier representant le nombre de joueurs de la partie.
-	public static final int nbJoueur = 4;
+	public static final int nbJoueur = 3; 
 	//'nbArtefact' un entier representant le nombre d'artefact de la partie.
 	public static final int nbArtefact = 4;
 	//'zones' un tableau stockant des zones correspondant aux zones de l'ile.

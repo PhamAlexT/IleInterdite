@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -69,7 +70,12 @@ class VueCommandes extends JPanel implements Observer {
 			
 			if (this.liaison.defaite()) {
 				System.out.println(" La partie est perdue !");
-				cv.ecranDefaite();
+				try {
+					cv.ecranDefaite();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
