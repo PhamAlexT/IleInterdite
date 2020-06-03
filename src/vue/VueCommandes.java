@@ -56,11 +56,12 @@ class VueCommandes extends JPanel implements Observer {
 		boutonFinDuTour.addActionListener(e -> {
 			vg.removeMouseListener(liaison.getAJActuel().getDeplacementJoueur());
 			vg.removeMouseListener(liaison.getAJActuel().getaZ());
+			liaison.giveAleaClefs();
 			liaison.prochainJoueur();
 			vg.addMouseListener(liaison.getAJActuel().getDeplacementJoueur());
 			vg.addMouseListener(liaison.getAJActuel().getaZ());
 			modele.avance();
-			liaison.giveAleaClefs();
+			
 			vj.update();
 			
 			if (this.liaison.gagne()) {
@@ -88,6 +89,7 @@ class VueCommandes extends JPanel implements Observer {
 
 		JButton echangeArte = new JButton("Donner une cle");
 		echangeArte.addActionListener(e -> ea.echange(liaison.getJoueur(), modele.getJoueurs()));
+
 		this.add(echangeArte);
      	this.add(recupArte);
 	    this.add(boutonFinDuTour);

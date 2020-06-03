@@ -71,7 +71,7 @@ public class CVue extends JFrame {
 	
 	vuei = new VueInventaire(modele);
 	this.frame.add(vuei,BorderLayout.EAST);
-	
+		
 	 //Fin de la plomberie :
 	 // - Ajustement de la taille de la fenetre en fonction du contenu.
 	 // - Indiquer qu'on quitte l'application si la fenetre est fermee.

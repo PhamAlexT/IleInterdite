@@ -25,6 +25,12 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener {
 	}
 
 	//Methodes
+	/**void donnerArtefact() :
+	 * 		Getter pour acceder au nombre de cle (pour afficher ds l'interface)
+	**/
+	public static int getNbClefs() {
+		return clefsMinimum;
+	}
 	
 	/**void donnerArtefact() :
 	 * 		Joueur j : un joueur.
