@@ -35,7 +35,8 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 	 * 		joueurs : une liste de joueurs.
 	 * 		Permet au joueur j de donner une de ses clefs de maniere aleatoire a un autre joueur proche parmi la liste des joueurs.
 	 **/
-	public void echange(Joueur j, ArrayList<Joueur> joueurs) {
+	public void echange() {
+		ArrayList<Joueur> joueurs = j.getIle().getJoueurs();
 		boolean echangeRealise = false;
 		if (j.getNbCles() != 0) {
 			for (Joueur j2 : joueurs) {
@@ -46,9 +47,11 @@ public class EchangeClefs extends ActionJoueur implements ActionListener {
 							Clef c = (Clef) j.getInventaire().get(alea);
 							j2.recupereObjet(c);
 							j.enleveCles(c, 1);
+							
 							this.incrNbAction();
 							this.notifyObservers();
 							j.getIle().notifyObservers();
+							
 							echangeRealise = true;
 						}
 					}

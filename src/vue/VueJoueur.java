@@ -75,9 +75,9 @@ public class VueJoueur extends JPanel implements Observer  {
 		info1 = new JLabel(espace + "Clic gauche sur une case : on avance");
 		info2 = new JLabel(espace + "Clic droit sur une case \"innondee\" : on assseche une zone");
 		info3 = new JLabel(espace + "Nombre de cle minimum pour recuperer un artefact : " + RamasserArtefact.getNbClefs());
-		info1.setPreferredSize(new Dimension(WIDTH,HEIGHT/9));
-		info2.setPreferredSize(new Dimension(WIDTH,HEIGHT/9));
-		info3.setPreferredSize(new Dimension(WIDTH,HEIGHT/13));
+		info1.setPreferredSize(new Dimension(WIDTH,HEIGHT/8));
+		info2.setPreferredSize(new Dimension(WIDTH,HEIGHT/8));
+		info3.setPreferredSize(new Dimension(WIDTH,HEIGHT/8));
 
 		
 		//On ajoute tout

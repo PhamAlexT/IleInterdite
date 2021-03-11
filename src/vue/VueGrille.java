@@ -115,7 +115,7 @@ class VueGrille extends JPanel implements Observer {
 			c = Color.RED;
 			break;
 		default:
-			c = Color.GRAY.brighter();
+			c = Color.YELLOW;
 			break;
 		}
 		return c;

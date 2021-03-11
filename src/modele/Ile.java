@@ -11,7 +11,7 @@ public class Ile extends Observable {
 	//Attributs
 	
 	//'HAUTEUR' un entier correspondant a la hauteur de la grille et 'LARGEUR' un entier correspondant a la largeur de la grille.
-	public static final int HAUTEUR = 15, LARGEUR = 15; // 20
+	public static final int HAUTEUR = 15, LARGEUR = 15;
 	//'nbJoueur' un entier representant le nombre de joueurs de la partie.
 	public static final int nbJoueur = 3; 
 	//'nbArtefact' un entier representant le nombre d'artefact de la partie.
@@ -165,7 +165,7 @@ public class Ile extends Observable {
 		for (int i = 1; i <= LARGEUR; i++) {
 			for (int j = 1; j <= HAUTEUR; j++) {
 				Zone zTraite = zones[i][j];
-				if (!zTraite.estSubmergee())
+				if (!zTraite.estSubmergee() && !zTraite.isHeliport())
 					zoneNonSubmergee.add(zTraite);
 			}
 		}

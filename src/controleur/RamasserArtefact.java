@@ -36,7 +36,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener {
 	 * 		Joueur j : un joueur.
 	 * 		Donne un artefact de l'element de la zone sur laquelle se trouve j si il a le nombre de clefs de cet element minimum requis.
 	**/
-	public void donnerArtefact(Joueur j) {
+	public void donnerArtefact() {
 		Zone z = j.getZone();
 		if (z.getElement() == modele.Element.Neutre) {
 			System.out.println("Cette zone ne contient pas d'artefact !");
@@ -44,6 +44,7 @@ public class RamasserArtefact extends ActionJoueur implements ActionListener {
 		if (this.clefsMinimum <= j.combienCles(z.getElement())) {
 			j.recupereObjet(new Artefact(z.getElement()));
 			j.enleveCles(new Clef(z.getElement()), clefsMinimum);
+			
 			this.incrNbAction();
 			this.notifyObservers();
 			j.getIle().notifyObservers(); // Pour l'affichage d'inventaire.

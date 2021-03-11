@@ -46,7 +46,9 @@ public class DeroulementPartie extends Observable implements Observer {
 		indiceJoueur++;
 		j = ile.getJoueurs().get(indiceJoueur % ile.getJoueurs().size());
 		ajActuel = new ActionsJoueurs(j);
+		
 		actionsRestantes = ajActuel.getnbActionsMax();
+		
 		ajActuel.addObserver(this);
 		this.notifyObservers();
 	}
@@ -69,8 +71,6 @@ public class DeroulementPartie extends Observable implements Observer {
 	 * 		Return : le nombre d'actions restantes a effectuer par le joueur actuel.
 	 **/
 	public int getActionsRestantes() {
-		// System.out.println(ajActuel.getnbActionsMax() -
-		// ajActuel.nbActionsUtilisees());
 		return ajActuel.getnbActionsMax() - ajActuel.nbActionsUtilisees();
 	}
 
@@ -142,7 +142,6 @@ public class DeroulementPartie extends Observable implements Observer {
 	public void update() {
 		actionsRestantes = getActionsRestantes();
 		this.notifyObservers();
-
 	}
 	
 	/**Ile getIle() :

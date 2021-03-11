@@ -34,7 +34,7 @@ public class VueInventaire extends JPanel implements Observer {
 	//'joueursList' une liste de joueurs.
 	private ArrayList<JLabel> joueursList;
 	//'WIDTH' un entier correspondant a une largeur.
-	private final int WIDTH = 20 * modele.HAUTEUR; //50
+	private final int WIDTH = 30 * modele.HAUTEUR; //50
 	//'HEIGHT' un entier correspondant a une hauteur.
 	private final int HEIGHT = 10 * modele.LARGEUR; //40
 	//'cote' un entier correspondant au cote d'un morceau d'interface.

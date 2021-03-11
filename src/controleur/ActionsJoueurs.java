@@ -36,6 +36,7 @@ public class ActionsJoueurs extends Observable implements Observer{
 		aZ.addObserver(this);
 		dJ.addObserver(this);
 		rA.addObserver(this);
+		ec.addObserver(this);
 	}
 
 	//Methodes
@@ -52,6 +53,10 @@ public class ActionsJoueurs extends Observable implements Observer{
 	public AssecherZone getaZ() {
 		return aZ;
 	}
+	
+	public EchangeClefs getEchangeClefs() {
+		return ec;
+	}
 
 	/**RamasserArtefact getrA() :
 	 * Return : rA la capacite a ramasser un artefact du joueur concerne par les actions.
@@ -65,7 +70,6 @@ public class ActionsJoueurs extends Observable implements Observer{
 	 **/
 	public boolean estLibre() {
 		int nbActionsUsed = aZ.getNbAction()+dJ.getNbAction()+rA.getNbAction() + ec.getNbAction();
-		//System.out.println(nbActionsUsed);
 		return nbActionsUsed < nbActionsMax && !j.getZone().estSubmergee();
 	}
 	
@@ -86,6 +90,5 @@ public class ActionsJoueurs extends Observable implements Observer{
 	@Override
 	public void update() {
 		this.notifyObservers();
-		
 	}
 }
